@@ -22,12 +22,12 @@ const typography = {
 }
 
 const navbar = {
-  backgroundColor: '#8e44ad',
+  backgroundColor: '#574B5D',
 }
 
 const colors = {
-  primary: '#530000',
-  secondary: '#F36868',
+  primary: '#3C3341',
+  secondary: '#6D6073',
   textPrimary: '#322f2f',
   textSecondary: '#50565E',
   silver: '#ECEFF1',
