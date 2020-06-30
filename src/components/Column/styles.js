@@ -30,8 +30,9 @@ const getButtonMargin = ({ justifyContent }) => {
 
 const StyledColumn = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: ${({ direction }) => direction};
   align-items: ${({ alignItems }) => alignItems || 'center'};
+  justify-content: ${({ justifyContent }) => justifyContent || 'center'};
   padding: ${({ padding }) => padding};
   background: ${({ background }) => background};
   border-radius: ${({ radius }) => radius};
