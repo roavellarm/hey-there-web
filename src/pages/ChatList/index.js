@@ -17,7 +17,7 @@ function ChatList() {
         return (
           <Row
             backgroundColor="primary"
-            radius="8"
+            radius="8px"
             alignItems="center"
             margin="2px"
             onClick={handleClick}
