@@ -7,22 +7,23 @@ const StyledRow = styled.div`
   flex-wrap: ${({ wrap }) => (wrap ? 'wrap' : null)};
   position: relative;
   width: 100%;
-  background-color: ${props => {
-    if (props.backgroundColor === 'primary') return props.theme.colors.primary
-    if (props.backgroundColor === 'secondary')
-      return props.theme.colors.secondary
-    if (props.backgroundColor === 'textPrimary')
-      return props.theme.colors.textPrimary
-    if (props.backgroundColor === 'textSecondary')
-      return props.theme.colors.textSecondary
-    if (props.backgroundColor === 'silver') return props.theme.colors.silver
-    if (props.backgroundColor === 'white') return props.theme.colors.white
-    if (props.backgroundColor === 'black') return props.theme.colors.black
-    if (props.backgroundColor === 'success') return props.theme.colors.success
-    if (props.backgroundColor === 'warning') return props.theme.colors.warning
-    if (props.backgroundColor === 'danger') return props.theme.colors.danger
-    if (props.backgroundColor === 'error') return props.theme.colors.error
-    return null
+  border-radius: ${({ theme }) => theme.border.radius || '5px'};
+  padding: ${({ padding }) => padding};
+  margin: ${({ margin }) => margin};
+  background-color: ${({ backgroundColor, theme }) => {
+    if (!backgroundColor) return null
+    if (backgroundColor === 'primary') return theme?.colors?.primary
+    if (backgroundColor === 'secondary') return theme?.colors?.secondary
+    if (backgroundColor === 'textPrimary') return theme?.colors?.textPrimary
+    if (backgroundColor === 'textSecondary') return theme?.colors?.textSecondary
+    if (backgroundColor === 'silver') return theme?.colors?.silver
+    if (backgroundColor === 'white') return theme?.colors?.white
+    if (backgroundColor === 'black') return theme?.colors?.black
+    if (backgroundColor === 'success') return theme?.colors?.success
+    if (backgroundColor === 'warning') return theme?.colors?.warning
+    if (backgroundColor === 'danger') return theme?.colors?.danger
+    if (backgroundColor === 'error') return theme?.colors?.error
+    return backgroundColor || 'inherit'
   }};
 
   &::after {
