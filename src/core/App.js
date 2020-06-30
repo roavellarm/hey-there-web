@@ -4,11 +4,11 @@ import Navbar from 'components/Navbar'
 
 function App() {
   const links = [
-    { name: 'Chat', path: '/' },
-    { name: 'New Contact', path: '/new-contact' },
-    { name: 'Profile', path: '/profile' },
-    { name: 'Login', path: '/login' },
-    { name: 'Register', path: '/register' },
+    { name: 'CHATS', path: '/' },
+    { name: 'NEW CONTACT', path: '/new-contact' },
+    { name: 'PROFILE', path: '/profile' },
+    { name: 'LOGIN', path: '/login' },
+    { name: 'REGISTER', path: '/register' },
   ]
 
   return (
