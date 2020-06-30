@@ -1,10 +1,9 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import PropType from 'prop-types'
-import Link from 'components/Link'
 import Select from 'components/Select'
 import DropdownMenu from 'components/DropdownMenu'
-import { Wrapper, StyledLink } from './styles'
+import { Wrapper, Content, StyledBrand, StyledLink } from './styles'
 
 function Navbar(props) {
   const { backgroundColor, brand, links, select, dropdown } = props
@@ -17,35 +16,37 @@ function Navbar(props) {
 
   return (
     <Wrapper backgroundColor={backgroundColor}>
-      {brand && <Link to={() => push('/')}>{brand}</Link>}
+      <Content>
+        {brand && <StyledBrand onClick={() => push('/')}>{brand}</StyledBrand>}
 
-      {links &&
-        links.map((link, index) => {
-          return (
-            <StyledLink key={index}>
-              <Link to={() => push(link.path)}>{link.name}</Link>
-            </StyledLink>
-          )
-        })}
+        {links &&
+          links.map((link, index) => {
+            return (
+              <StyledLink key={index} onClick={() => push(link.path)}>
+                {link.name}
+              </StyledLink>
+            )
+          })}
 
-      {dropdown && (
-        <DropdownMenu
-          width="150px"
-          title={dropdown.title}
-          options={dropdown.options}
-          onSelectOption={handelOption}
-        />
-      )}
+        {dropdown && (
+          <DropdownMenu
+            width="150px"
+            title={dropdown.title}
+            options={dropdown.options}
+            onSelectOption={handelOption}
+          />
+        )}
 
-      {select && (
-        <Select
-          width="150px"
-          name="navbar"
-          options={select.options}
-          onChange={handelOption}
-          placeholder={select.placeholder}
-        />
-      )}
+        {select && (
+          <Select
+            width="150px"
+            name="navbar"
+            options={select.options}
+            onChange={handelOption}
+            placeholder={select.placeholder}
+          />
+        )}
+      </Content>
     </Wrapper>
   )
 }
