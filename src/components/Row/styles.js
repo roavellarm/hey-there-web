@@ -7,7 +7,13 @@ const StyledRow = styled.div`
   flex-wrap: ${({ wrap }) => (wrap ? 'wrap' : null)};
   position: relative;
   width: 100%;
-  border-radius: ${({ theme }) => theme.border.radius || '5px'};
+
+  /* border-bottom-color: ${({ theme }) =>
+    theme?.row?.borderColor || theme.colors.primary};
+  border-bottom-style: solid;
+  border-bottom-width: 1px; */
+
+  border-radius: ${({ theme, radius }) => theme?.row?.borderRadius || radius};
   padding: ${({ padding }) => padding};
   margin: ${({ margin }) => margin};
   background-color: ${({ backgroundColor, theme }) => {
