@@ -32,6 +32,6 @@ export const StyledLink = styled.div`
   padding: 10px 8px;
   border-radius: 8px;
   &:hover {
-    backdrop-filter: brightness(0.9);
+    backdrop-filter: brightness(1.2);
   }
 `
