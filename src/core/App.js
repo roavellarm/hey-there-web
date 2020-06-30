@@ -1,6 +1,7 @@
 import React from 'react'
 import Router from 'core/Router'
 import Navbar from 'components/Navbar'
+import Column from 'components/Column'
 
 function App() {
   const links = [
@@ -14,7 +15,9 @@ function App() {
   return (
     <>
       <Navbar brand="Hey There" links={links} />
-      <Router />
+      <Column size={12} alignItems="center">
+        <Router />
+      </Column>
     </>
   )
 }
