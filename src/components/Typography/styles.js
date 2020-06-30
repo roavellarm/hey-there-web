@@ -6,6 +6,7 @@ const StyledTypography = styled.div`
     if (props.size === 'xxs') return props.theme.typography.size.xxs
     if (props.size === 'xs') return props.theme.typography.size.xs
     if (props.size === 'sm') return props.theme.typography.size.sm
+    if (props.size === 'md') return props.theme.typography.size.md
     if (props.size === 'lg') return props.theme.typography.size.lg
     if (props.size === 'xl') return props.theme.typography.size.xl
     if (props.size === 'xxl') return props.theme.typography.size.xxl
@@ -18,6 +19,7 @@ const StyledTypography = styled.div`
     if (props.weight === 'bold') return props.theme.typography.weight.bold
     return props.theme.typography.weight.black
   }};
+
   line-height: ${({ lineHeight }) => lineHeight};
 
   letter-spacing: 0.4px;

@@ -29,7 +29,7 @@ Typography.defaultProps = {
   color: 'initial',
   size: 'md',
   weight: 'regular',
-  lineHeight: 1.8,
+  lineHeight: 1.4,
 }
 
 export default Typography
