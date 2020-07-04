@@ -29,9 +29,11 @@ const getButtonMargin = ({ justifyContent }) => {
 }
 
 const StyledColumn = styled.div`
-  display: flex;
-  flex-direction: ${({ direction }) => direction};
   align-items: ${({ alignItems }) => alignItems || 'center'};
+
+  flex-direction: ${({ justifyContent }) =>
+    justifyContent ? 'column' : 'inherit'};
+  display: ${({ justifyContent }) => (justifyContent ? 'flex' : 'inherit')};
   justify-content: ${({ justifyContent }) => justifyContent || 'center'};
   padding: ${({ padding }) => padding};
   background: ${({ background }) => background};
