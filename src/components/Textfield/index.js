@@ -5,7 +5,7 @@ import { StyledTextfield } from './styles'
 import Label from '../Label'
 
 function Textfield(props) {
-  const { label, fullWidth, value, onChange, isRequired } = props
+  const { label, width, value, onChange, isRequired } = props
   return (
     <div>
       {label && <Label isRequired={isRequired}>{label}</Label>}
@@ -15,7 +15,7 @@ function Textfield(props) {
             {...props}
             value={value}
             onChange={onChange}
-            fullWidth={fullWidth}
+            width={width}
             {...inputProps}
           />
         )}
@@ -29,16 +29,16 @@ Textfield.propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onChange: PropTypes.func.isRequired,
   label: PropTypes.string,
-  fullWidth: PropTypes.bool,
+  width: PropTypes.string,
   isRequired: PropTypes.bool,
 }
 
 Textfield.defaultProps = {
   value: undefined,
-  fullWidth: false,
+  width: undefined,
   isRequired: false,
-  name: '',
-  label: '',
+  name: undefined,
+  label: undefined,
 }
 
 export default Textfield
