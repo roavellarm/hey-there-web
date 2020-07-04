@@ -6,7 +6,6 @@ function Login() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [url, setUrl] = useState('')
-  const { REACT_APP_GOOGLE_CLIENT_ID } = process.env
 
   const responseGoogle = response => {
     // eslint-disable-next-line no-console
@@ -24,7 +23,7 @@ function Login() {
       <h2>{`Email: ${email}`}</h2>
       <img src={url} alt={name} />
       <GoogleLogin
-        clientId={REACT_APP_GOOGLE_CLIENT_ID}
+        clientId="500788707906-bf6cvk9j4na6rsgkk9m19unbbahal1do.apps.googleusercontent.com"
         buttonText="Login"
         onSuccess={responseGoogle}
         onFailure={responseGoogle}
