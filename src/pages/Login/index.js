@@ -31,7 +31,7 @@ function Login() {
       <h2>{`Email: ${email}`}</h2>
       <img src={avatarImg} alt={name} />
       <GoogleLogin
-        clientId={}
+        clientId={REACT_APP_GOOGLE_CLIENT_ID}
         buttonText="Login"
         onSuccess={responseGoogle}
         onFailure={responseGoogle}
