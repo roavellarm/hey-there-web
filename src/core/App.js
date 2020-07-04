@@ -1,6 +1,7 @@
 import React from 'react'
 import Router from 'core/Router'
 import Navbar from 'components/Navbar'
+import Row from 'components/Row'
 import Column from 'components/Column'
 
 function App() {
@@ -15,9 +16,11 @@ function App() {
   return (
     <>
       <Navbar brand="Hey There" links={links} />
-      <Column size={12} alignItems="center">
-        <Router />
-      </Column>
+      <Row>
+        <Column size={12} justifyContent="center">
+          <Router />
+        </Column>
+      </Row>
     </>
   )
 }

@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 
 export const StyledTextfield = styled.input`
-  display: block;
+  /* position: relative; */
+  /* display: ; */
   padding: 0.3em 5px;
   font-size: ${({ theme }) => theme.typography.size.sm};
   line-height: 1.5;
@@ -18,9 +19,9 @@ export const StyledTextfield = styled.input`
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out,
     -webkit-box-shadow 0.15s ease-in-out;
-  width: ${({ fullWidth }) => (fullWidth ? '100%' : 'inherit')};
   box-sizing: border-box;
   opacity: ${({ disabled }) => (disabled ? 0.7 : 1)};
+  width: ${({ width }) => width || '100%'};
 
   &::placeholder {
     font-family: ${({ theme }) => theme.typography.type.primary};
