@@ -6,34 +6,30 @@ import Column from 'components/Column'
 
 function Register() {
   return (
-    <>
-      <Column size={5} style={{ padding: '100px' }}>
-        <Row>
-          <div align="center">
-            <h1>Cadastre-se</h1>
-          </div>
+    <Column size={5}>
+      <Column size={12}>
+        <h1>Cadastre-se</h1>
+      </Column>
 
-          <Textfield style={{ width: '430px' }} label="Nome" name="nome" />
+      <Row>
+        <Column size={12}>
+          <Textfield label="Nome" name="nome" />
           <br />
-          <Textfield style={{ width: '430px' }} label="Email" name="email" />
+          <Textfield label="Email" name="email" />
           <br />
-          <Textfield
-            style={{ width: '430px' }}
-            type="password"
-            label="Senha"
-            name="senha"
-          />
+          <Textfield type="password" label="Senha" name="senha" />
           <br />
           <Button
             color="secondary"
-            // eslint-disable-next-line no-alert
             type="submit"
+            fullWidth
+            style={{ margin: '1rem 0px' }}
           >
             Cadastrar
           </Button>
-        </Row>
-      </Column>
-    </>
+        </Column>
+      </Row>
+    </Column>
   )
 }
 
