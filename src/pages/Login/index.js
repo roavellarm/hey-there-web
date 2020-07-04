@@ -5,15 +5,23 @@ import Column from 'components/Column'
 function Login() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
-  const [url, setUrl] = useState('')
-
+  const [avatarImg, setAvatarImg] = useState('')
+  const [loginType, setLoginType] = useState('')
+  const { REACT_APP_GOOGLE_CLIENT_ID } = process.env
   const responseGoogle = response => {
-    // eslint-disable-next-line no-console
-    console.log(response.profileObj)
-
     setName(response.profileObj.name)
     setEmail(response.profileObj.email)
-    setUrl(response.profileObj.imageUrl)
+    setAvatarImg(response.profileObj.imageUrl)
+    setLoginType('google')
+
+    const data = {
+      name,
+      email,
+      avatarImg,
+      loginType,
+    }
+    // eslint-disable-next-line no-console
+    console.log(data)
   }
 
   return (
@@ -21,9 +29,9 @@ function Login() {
       <h1>Login</h1>
       <h2>{`Welcome: ${name}`}</h2>
       <h2>{`Email: ${email}`}</h2>
-      <img src={url} alt={name} />
+      <img src={avatarImg} alt={name} />
       <GoogleLogin
-        clientId="500788707906-bf6cvk9j4na6rsgkk9m19unbbahal1do.apps.googleusercontent.com"
+        clientId={}
         buttonText="Login"
         onSuccess={responseGoogle}
         onFailure={responseGoogle}
