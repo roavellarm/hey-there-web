@@ -5,6 +5,7 @@ const StyledLabel = styled.label`
   font-weight: ${props => props.theme.typography.weight.bold};
   padding-left: 3px;
   padding-right: 13px;
+  color: 'green';
 `
 
 export default StyledLabel
