@@ -23,19 +23,10 @@ function Profile() {
           justifyContent="center"
           background="#302934"
         >
-          <Typography>
-            Nome:
-            {profile.name}
-          </Typography>
-          <Typography>
-            Email:
-            {profile.email}
-          </Typography>
+          <Typography>{`Nome: ${profile.name}`}</Typography>
+          <Typography>{`Email: ${profile.email}`}</Typography>
 
-          <Typography>
-            Status:
-            {profile.statusMessage}
-          </Typography>
+          <Typography>{`Status: ${profile.statusMessage}`}</Typography>
         </Column>
       </Column>
     </Row>

@@ -16,4 +16,5 @@ Avatar.defaultProps = {
   size: undefined,
   border: undefined,
 }
+
 export default Avatar
