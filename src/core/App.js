@@ -6,7 +6,6 @@ import Column from 'components/Column'
 
 function App() {
   const links = [
-    { name: 'CHATS', path: '/' },
     { name: 'NEW CONTACT', path: '/new-contact' },
     { name: 'PROFILE', path: '/profile' },
     { name: 'LOGIN', path: '/login' },

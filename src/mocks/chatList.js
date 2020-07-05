@@ -1,49 +1,44 @@
-import image1 from 'assets/01.jpeg'
-import image2 from 'assets/02.jpeg'
-import image3 from 'assets/03.jpeg'
-import image4 from 'assets/04.jpeg'
-import image5 from 'assets/05.jpeg'
-import image6 from 'assets/06.jpeg'
+import users from './users'
 
 export const chatList = [
   {
-    nickname: 'Jessica dos Santos',
-    avatar: image1,
+    id: 0,
+    user: users[0],
     msgPreview: 'You: Poxa vida! :(',
     time: '12:50 PM',
     newMessages: '5',
   },
   {
-    nickname: 'Maria',
-    avatar: image2,
+    id: 1,
+    user: users[1],
     msgPreview: 'Maria: E ai gatinho? Tudo bem?',
     time: '10:03 AM',
     newMessages: '2',
   },
   {
-    nickname: 'Rebeca',
-    avatar: image3,
+    id: 2,
+    user: users[2],
     msgPreview: 'You: Poxa vida! :(',
     time: '09:27 AM',
     newMessages: '0',
   },
   {
-    nickname: 'Gaby',
-    avatar: image4,
+    id: 3,
+    user: users[3],
     msgPreview: 'Gaby: Bora tomar uma ceva?',
     time: 'MONDAY',
     newMessages: '0',
   },
   {
-    nickname: 'Paty',
-    avatar: image5,
+    id: 4,
+    user: users[4],
     msgPreview: 'You: Nem te conto o que me aconteceu...',
     time: 'SUNDAY',
     newMessages: '0',
   },
   {
-    nickname: 'Mya',
-    avatar: image6,
+    id: 5,
+    user: users[5],
     msgPreview: 'Mya: Pois é kkkk!!',
     time: 'SATURDAY',
     newMessages: '0',

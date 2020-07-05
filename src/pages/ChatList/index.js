@@ -1,4 +1,5 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import Row from 'components/Row'
 import Column from 'components/Column'
 import Typography from 'components/Typography'
@@ -6,47 +7,48 @@ import { chatList } from 'mocks/chatList'
 import { StyledImage, StyledNumber } from './styles'
 
 function ChatList() {
-  const handleClick = () => {
-    // eslint-disable-next-line no-alert
-    alert('You clicked me!!!')
+  const { push } = useHistory()
+
+  const handleClick = id => {
+    return push(`/chat-room/${id}`)
   }
 
   return (
     <Row>
-      {chatList.map(user => {
+      {chatList.map(item => {
         return (
           <Row
             backgroundColor="primary"
             radius="8px"
             alignItems="center"
             margin="2px"
-            onClick={handleClick}
+            onClick={() => handleClick(item.id)}
           >
             <Column size={12} margin="8px 2%">
               <Column size={1}>
-                <StyledImage image={user.avatar} />
+                <StyledImage image={item.user.avatar} />
               </Column>
 
               <Column size={9} alignItems="left" direction="column">
                 <Typography size="md" weight="bold">
-                  {user.nickname}
+                  {item.user.nickname}
                 </Typography>
-                <Typography color="secondary">{user.msgPreview}</Typography>
+                <Typography color="secondary">{item.msgPreview}</Typography>
               </Column>
 
               <Column size={2} direction="column">
                 <Typography
                   size="sm"
-                  weight={user.newMessages !== '0' ? 'bold' : 'regular'}
-                  color={user.newMessages !== '0' ? '#32a852' : 'grey'}
+                  weight={item.newMessages !== '0' ? 'bold' : 'regular'}
+                  color={item.newMessages !== '0' ? '#32a852' : 'grey'}
                 >
-                  {user.time}
+                  {item.time}
                 </Typography>
 
-                {user.newMessages !== '0' ? (
+                {item.newMessages !== '0' ? (
                   <StyledNumber>
                     <Typography size="sm" weight="black">
-                      {user.newMessages}
+                      {item.newMessages}
                     </Typography>
                   </StyledNumber>
                 ) : null}
