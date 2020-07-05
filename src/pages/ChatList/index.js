@@ -2,8 +2,9 @@ import React from 'react'
 import Row from 'components/Row'
 import Column from 'components/Column'
 import Typography from 'components/Typography'
+import Avatar from 'components/Avatar'
 import { chatList } from 'mocks/chatList'
-import { StyledImage, StyledNumber } from './styles'
+import { StyledNumber } from './styles'
 
 function ChatList() {
   const handleClick = () => {
@@ -24,7 +25,7 @@ function ChatList() {
           >
             <Column size={12} margin="8px 2%">
               <Column size={1}>
-                <StyledImage image={user.avatar} />
+                <Avatar src={user.avatar} />
               </Column>
 
               <Column size={9} alignItems="left" direction="column">
