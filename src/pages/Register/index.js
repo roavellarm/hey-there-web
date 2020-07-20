@@ -1,10 +1,34 @@
-import React from 'react'
+/* eslint-disable no-alert */
+import React, { useState } from 'react'
 import Row from 'components/Row'
+import { useHistory } from 'react-router-dom'
 import Button from 'components/Button'
 import Textfield from 'components/Textfield'
 import Column from 'components/Column'
+import api from '../../services/api'
 
 function Register() {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const history = useHistory()
+
+  async function handleRegister(e) {
+    e.preventDefault()
+
+    const data = { name, email, password }
+
+    try {
+      await api.post('/register', data)
+
+      alert('Cadastro efetuado com sucesso!')
+      history.push('/')
+    } catch (error) {
+      alert('Erro no cadastro!!')
+    }
+  }
+
   return (
     <Column size={5}>
       <Column size={12}>
@@ -13,17 +37,34 @@ function Register() {
 
       <Row>
         <Column size={12}>
-          <Textfield label="Nome" name="nome" />
+          <Textfield
+            value={name}
+            onChange={e => setName(e.target.value)}
+            label="Nome"
+            name="nome"
+          />
           <br />
-          <Textfield label="Email" name="email" />
+          <Textfield
+            label="Email"
+            name="email"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+          />
           <br />
-          <Textfield type="password" label="Senha" name="senha" />
+          <Textfield
+            type="password"
+            label="Senha"
+            name="senha"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+          />
           <br />
           <Button
             color="secondary"
             type="submit"
             fullWidth
             style={{ margin: '1rem 0px' }}
+            onClick={handleRegister}
           >
             Cadastrar
           </Button>
