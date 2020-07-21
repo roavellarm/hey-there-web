@@ -9,7 +9,7 @@ function Navbar(props) {
   const { backgroundColor, brand, links, select, dropdown } = props
   const { push } = useHistory()
 
-  const handelOption = e => {
+  const handleOption = e => {
     const { value } = e.target
     push(value)
   }
@@ -33,7 +33,7 @@ function Navbar(props) {
             width="150px"
             title={dropdown.title}
             options={dropdown.options}
-            onSelectOption={handelOption}
+            onSelectOption={handleOption}
           />
         )}
 
@@ -42,7 +42,7 @@ function Navbar(props) {
             width="150px"
             name="navbar"
             options={select.options}
-            onChange={handelOption}
+            onChange={handleOption}
             placeholder={select.placeholder}
           />
         )}
