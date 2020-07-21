@@ -14,7 +14,7 @@ import { Container, Content } from './styles'
 function Profile() {
   const [uploadedFiles, setUploadedFiles] = useState([])
 
-  const updateThatShit = async () => {
+  const updateStates = async () => {
     const response = await api.get('/images')
     setUploadedFiles(
       response.data.map(file => ({
@@ -88,7 +88,7 @@ function Profile() {
   }
 
   useEffect(() => {
-    updateThatShit()
+    updateStates()
   })
 
   return (
