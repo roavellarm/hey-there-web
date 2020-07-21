@@ -51,9 +51,10 @@ function Login() {
         <Column size={12}>
           <Row>
             <Column size={12} justifyContent="center">
-              {/* <h2>{`Welcome: ${name}`}</h2>
-      <h2>{`Email: ${email}`}</h2> */}
+              <h2>{`Welcome: ${name}`}</h2>
+              <h2>{`Email: ${email}`}</h2>
               <img src={url} alt={name} />
+              <br />
               <GoogleLogin
                 clientId={REACT_APP_GOOGLE_CLIENT_ID}
                 buttonText="Login with Google"
@@ -61,7 +62,6 @@ function Login() {
                 onFailure={responseGoogle}
                 cookiePolicy="single_host_origin"
               />
-
               <br />
               <Label> Or </Label>
             </Column>
@@ -71,7 +71,6 @@ function Login() {
           <Textfield
             label="Email"
             name="email"
-            value={email}
             onChange={e => setEmail(e.target.value)}
           />
           <br />
