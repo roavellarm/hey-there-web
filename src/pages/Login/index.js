@@ -52,7 +52,6 @@ function Login() {
           <Row>
             <Column size={12} justifyContent="center">
               <h2>{`Welcome: ${name}`}</h2>
-              <h2>{`Email: ${email}`}</h2>
               <img src={url} alt={name} />
               <br />
               <GoogleLogin
