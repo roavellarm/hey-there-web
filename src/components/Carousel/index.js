@@ -16,7 +16,7 @@ export const StyledLegend = styled.div`
 `
 
 function Carousel(props) {
-  const { productList } = props
+  const { list } = props
 
   return (
     <ReactCarousel
@@ -29,19 +29,19 @@ function Carousel(props) {
       // centerMode
       width="100%"
     >
-      {productList
-        .filter(product => !!product.headerImage)
-        .map(product => {
+      {list
+        .filter(user => !!user.headerImage)
+        .map(user => {
           return (
-            <div key={product._id}>
+            <div key={user._id}>
               <img
-                alt={product.nickname}
-                src={product.headerImage}
+                alt={user.name}
+                src={user.headerImage}
                 height="300"
                 width="auto"
                 style={{ objectFit: 'cover', objectPosition: 'center' }}
               />
-              <StyledLegend>{product.nickname}</StyledLegend>
+              <StyledLegend>{user.name}</StyledLegend>
             </div>
           )
         })}
@@ -50,7 +50,7 @@ function Carousel(props) {
 }
 
 Carousel.propTypes = {
-  productList: PropType.arrayOf(PropType.shape({})).isRequired,
+  list: PropType.arrayOf(PropType.shape({})).isRequired,
 }
 
 export default Carousel
