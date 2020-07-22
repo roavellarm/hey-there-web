@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Row from 'components/Row'
 import { useHistory } from 'react-router-dom'
 import Button from 'components/Button'
+import Layout from 'components/Layout'
 import Textfield from 'components/Textfield'
 import Column from 'components/Column'
 import api from '../../api/index'
@@ -29,47 +30,49 @@ function Register() {
   }
 
   return (
-    <Column size={5}>
-      <Column size={12}>
-        <h1>Cadastre-se</h1>
-      </Column>
-
-      <Row>
+    <Layout>
+      <Column size={5}>
         <Column size={12}>
-          <Textfield
-            value={name}
-            onChange={e => setName(e.target.value)}
-            label="Nome"
-            name="nome"
-          />
-          <br />
-          <Textfield
-            label="Email"
-            name="email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-          />
-          <br />
-          <Textfield
-            type="password"
-            label="Senha"
-            name="senha"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-          />
-          <br />
-          <Button
-            color="secondary"
-            type="submit"
-            fullWidth
-            style={{ margin: '1rem 0px' }}
-            onClick={handleRegister}
-          >
-            Cadastrar
-          </Button>
+          <h1>Cadastre-se</h1>
         </Column>
-      </Row>
-    </Column>
+
+        <Row>
+          <Column size={12}>
+            <Textfield
+              value={name}
+              onChange={e => setName(e.target.value)}
+              label="Nome"
+              name="nome"
+            />
+            <br />
+            <Textfield
+              label="Email"
+              name="email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+            />
+            <br />
+            <Textfield
+              type="password"
+              label="Senha"
+              name="senha"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+            />
+            <br />
+            <Button
+              color="secondary"
+              type="submit"
+              fullWidth
+              style={{ margin: '1rem 0px' }}
+              onClick={handleRegister}
+            >
+              Cadastrar
+            </Button>
+          </Column>
+        </Row>
+      </Column>
+    </Layout>
   )
 }
 

@@ -25,7 +25,6 @@ function Router(props) {
       </Switch>
     )
   }
-
   return (
     <Switch>
       <Route path="/" exact component={() => <Home {...props} />} />

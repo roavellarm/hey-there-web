@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
 export const Content = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 60%;
+  width: 100%;
   align-items: center;
   color: ${({ theme }) => theme?.navbar?.color || 'white'};
   height: ${({ theme }) => theme?.navbar?.height};
