@@ -5,11 +5,11 @@ import Textfield from 'components/Textfield'
 import Label from 'components/Label'
 import Button from 'components/Button'
 import Row from 'components/Row'
-import api from 'services/api'
+import api from 'api/index'
 import { useHistory } from 'react-router-dom'
+import { AiOutlineReload } from 'react-icons/ai'
 
 function Login() {
-  const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [url, setUrl] = useState('')
@@ -21,7 +21,6 @@ function Login() {
     // eslint-disable-next-line no-console
     console.log(response.profileObj)
 
-    setName(response.profileObj.name)
     setEmail(response.profileObj.email)
     setUrl(response.profileObj.imageUrl)
   }
@@ -29,15 +28,14 @@ function Login() {
   async function handleLogin(e) {
     e.preventDefault()
 
-    const data = { email, password }
-
     try {
-      await api.post('/login', data)
+      const { data } = await api.post('/login', { email, password })
 
-      alert('Login efetuado com sucesso!')
-      history.push('/')
+      localStorage.setItem('token', data.token)
+
+      return history.push('/chat')
     } catch (error) {
-      alert('Erro no Login!!')
+      return alert('Erro no Login!!')
     }
   }
 
@@ -51,8 +49,8 @@ function Login() {
         <Column size={12}>
           <Row>
             <Column size={12} justifyContent="center">
-              <h2>{`Welcome: ${name}`}</h2>
-              <img src={url} alt={name} />
+              <h2>{`Welcome: ${email}`}</h2>
+              <img src={url} alt={email} />
               <br />
               <GoogleLogin
                 clientId={REACT_APP_GOOGLE_CLIENT_ID}
@@ -70,6 +68,7 @@ function Login() {
           <Textfield
             label="Email"
             name="email"
+            value={email}
             onChange={e => setEmail(e.target.value)}
           />
           <br />

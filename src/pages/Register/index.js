@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 import Button from 'components/Button'
 import Textfield from 'components/Textfield'
 import Column from 'components/Column'
-import api from '../../services/api'
+import api from '../../api/index'
 
 function Register() {
   const [name, setName] = useState('')
@@ -22,7 +22,7 @@ function Register() {
       await api.post('/register', data)
 
       alert('Cadastro efetuado com sucesso!')
-      history.push('/')
+      history.push('/chat')
     } catch (error) {
       alert('Erro no cadastro!!')
     }

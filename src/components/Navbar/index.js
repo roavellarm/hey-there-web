@@ -6,18 +6,34 @@ import DropdownMenu from 'components/DropdownMenu'
 import { Wrapper, Content, StyledBrand, StyledLink } from './styles'
 
 function Navbar(props) {
-  const { backgroundColor, brand, links, select, dropdown } = props
+  const {
+    backgroundColor,
+    brand,
+    links,
+    select,
+    dropdown,
+    isAuthenticated,
+  } = props
   const { push } = useHistory()
 
   const handelOption = e => {
     const { value } = e.target
     push(value)
   }
+  const handleBrandClick = () => {
+    if (isAuthenticated) return push('/chat')
+    return push('/')
+  }
+
+  const logOut = () => {
+    localStorage.clear()
+    return push('/')
+  }
 
   return (
     <Wrapper backgroundColor={backgroundColor}>
       <Content>
-        {brand && <StyledBrand onClick={() => push('/')}>{brand}</StyledBrand>}
+        {brand && <StyledBrand onClick={handleBrandClick}>{brand}</StyledBrand>}
 
         {links &&
           links.map((link, index) => {
@@ -27,7 +43,7 @@ function Navbar(props) {
               </StyledLink>
             )
           })}
-
+        {isAuthenticated && <StyledLink onClick={logOut}>Logout</StyledLink>}
         {dropdown && (
           <DropdownMenu
             width="150px"
@@ -53,6 +69,7 @@ function Navbar(props) {
 
 Navbar.propTypes = {
   backgroundColor: PropType.string,
+  isAuthenticated: PropType.bool.isRequired,
   brand: PropType.string,
   links: PropType.arrayOf(
     PropType.shape({
