@@ -1,39 +1,58 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import PropType from 'prop-types'
+import { useStore } from 'core/store'
 import Select from 'components/Select'
 import DropdownMenu from 'components/DropdownMenu'
 import { Wrapper, Content, StyledBrand, StyledLink } from './styles'
 
 function Navbar(props) {
-  const {
-    backgroundColor,
-    brand,
-    links,
-    select,
-    dropdown,
-    isAuthenticated,
-  } = props
+  const { backgroundColor, brand, select, dropdown } = props
+  const [links, setLinks] = useState([])
+  const { store, setStore } = useStore()
   const { push } = useHistory()
+
+  const handleLinks = () => {
+    if (store.token) {
+      setLinks(
+        links.concat([
+          { name: 'CHATS', path: '/chat' },
+          { name: 'NEW CONTACT', path: '/new-contact' },
+          { name: 'PROFILE', path: '/profile' },
+        ])
+      )
+      return links
+    }
+    setLinks(
+      links.concat([
+        { name: 'LOGIN', path: '/login' },
+        { name: 'REGISTER', path: '/register' },
+      ])
+    )
+    return links
+  }
 
   const handelOption = e => {
     const { value } = e.target
     push(value)
   }
-  const handleBrandClick = () => {
-    if (isAuthenticated) return push('/chat')
-    return push('/')
-  }
 
   const logOut = () => {
     localStorage.clear()
-    return push('/')
+    setStore(null)
+    push('/')
+    window.location.reload()
   }
+
+  useEffect(() => {
+    handleLinks()
+    // eslint-disable-next-line
+  }, [])
 
   return (
     <Wrapper backgroundColor={backgroundColor}>
       <Content>
-        {brand && <StyledBrand onClick={handleBrandClick}>{brand}</StyledBrand>}
+        {brand && <StyledBrand onClick={() => push('/')}>{brand}</StyledBrand>}
 
         {links &&
           links.map((link, index) => {
@@ -43,7 +62,7 @@ function Navbar(props) {
               </StyledLink>
             )
           })}
-        {isAuthenticated && <StyledLink onClick={logOut}>Logout</StyledLink>}
+        {store.token && <StyledLink onClick={logOut}>LOGOUT</StyledLink>}
         {dropdown && (
           <DropdownMenu
             width="150px"
@@ -69,14 +88,8 @@ function Navbar(props) {
 
 Navbar.propTypes = {
   backgroundColor: PropType.string,
-  isAuthenticated: PropType.bool.isRequired,
   brand: PropType.string,
-  links: PropType.arrayOf(
-    PropType.shape({
-      name: PropType.string,
-      path: PropType.string,
-    })
-  ),
+
   select: PropType.shape({
     placeholder: PropType.string,
     options: PropType.arrayOf(
@@ -100,7 +113,6 @@ Navbar.propTypes = {
 Navbar.defaultProps = {
   backgroundColor: undefined,
   brand: undefined,
-  links: undefined,
   dropdown: undefined,
   select: undefined,
 }
