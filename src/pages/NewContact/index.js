@@ -1,12 +1,7 @@
 import React from 'react'
-import Layout from 'components/Layout'
 
 function NewContact() {
-  return (
-    <Layout>
-      <h1>New Contact</h1>
-    </Layout>
-  )
+  return <h1>New Contact</h1>
 }
 
 export default NewContact

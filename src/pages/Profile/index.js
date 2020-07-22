@@ -4,35 +4,32 @@ import Column from 'components/Column'
 import Avatar from 'components/Avatar'
 import { profile } from 'mocks/profile'
 import Typography from 'components/Typography'
-import Layout from 'components/Layout'
 
 function Profile() {
   return (
-    <Layout>
-      <Row>
+    <Row>
+      <Column
+        margin="12px"
+        size={12}
+        justifyContent="center"
+        background="#5A4E61"
+      >
+        <Column margin="90px" size={12} justifyContent="center">
+          <Avatar size="120px" src={profile.avatarImg} border="green" />
+        </Column>
         <Column
-          margin="12px"
+          margin="10px"
           size={12}
           justifyContent="center"
-          background="#5A4E61"
+          background="#302934"
         >
-          <Column margin="90px" size={12} justifyContent="center">
-            <Avatar size="120px" src={profile.avatarImg} border="green" />
-          </Column>
-          <Column
-            margin="10px"
-            size={12}
-            justifyContent="center"
-            background="#302934"
-          >
-            <Typography>{`Nome: ${profile.name}`}</Typography>
-            <Typography>{`Email: ${profile.email}`}</Typography>
+          <Typography>{`Nome: ${profile.name}`}</Typography>
+          <Typography>{`Email: ${profile.email}`}</Typography>
 
-            <Typography>{`Status: ${profile.statusMessage}`}</Typography>
-          </Column>
+          <Typography>{`Status: ${profile.statusMessage}`}</Typography>
         </Column>
-      </Row>
-    </Layout>
+      </Column>
+    </Row>
   )
 }
 
