@@ -15,6 +15,7 @@ function Router(props) {
   if (isAuthenticated) {
     return (
       <Switch>
+        <Route path="/" exact component={() => <Home {...props} />} />
         <Route path="/chat" component={() => <ChatList {...props} />} />
         <Route
           path="/new-contact"
