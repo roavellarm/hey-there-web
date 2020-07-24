@@ -17,6 +17,7 @@ function ChatList() {
       {chatList.map(user => {
         return (
           <Row
+            key={user.name}
             backgroundColor="primary"
             radius="8px"
             alignItems="center"
@@ -30,7 +31,7 @@ function ChatList() {
 
               <Column size={9} alignItems="left" direction="column">
                 <Typography size="md" weight="bold">
-                  {user.nickname}
+                  {user.name}
                 </Typography>
                 <Typography color="secondary">{user.msgPreview}</Typography>
               </Column>
