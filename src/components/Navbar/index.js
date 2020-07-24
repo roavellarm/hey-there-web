@@ -68,7 +68,7 @@ function Navbar(props) {
             width="150px"
             title={dropdown.title}
             options={dropdown.options}
-            onSelectOption={handelOption}
+            onSelectOption={handleOption}
           />
         )}
 
@@ -77,7 +77,7 @@ function Navbar(props) {
             width="150px"
             name="navbar"
             options={select.options}
-            onChange={handelOption}
+            onChange={handleOption}
             placeholder={select.placeholder}
           />
         )}
