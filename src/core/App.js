@@ -12,7 +12,7 @@ function App() {
   async function verifyToken() {
     const token = localStorage.getItem('token')
     if (token) {
-      const { data } = await api.post('/auth/verifyToken', { token })
+      const { data } = await api.post('/verifyToken', { token })
       if (!data?.isValidToken) {
         setStore(null)
         localStorage.clear()
