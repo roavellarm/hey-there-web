@@ -89,7 +89,7 @@ function Profile() {
 
   useEffect(() => {
     updateStates()
-  })
+  }, [])
 
   return (
     <Row>
