@@ -32,7 +32,7 @@ function Navbar(props) {
     return links
   }
 
-  const handelOption = e => {
+  const handleOption = e => {
     const { value } = e.target
     push(value)
   }
