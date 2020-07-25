@@ -1,4 +1,4 @@
-import image1 from 'assets/01.jpeg'
+import image1 from './images/01.jpeg'
 
 export const profile = {
   name: 'Jessica dos Santos',
