@@ -7,7 +7,7 @@ import Label from '../Label'
 function Textfield(props) {
   const { label, width, value, onChange, isRequired } = props
   return (
-    <div>
+    <>
       {label && <Label isRequired={isRequired}>{label}</Label>}
       <InputMask {...props}>
         {inputProps => (
@@ -20,7 +20,7 @@ function Textfield(props) {
           />
         )}
       </InputMask>
-    </div>
+    </>
   )
 }
 

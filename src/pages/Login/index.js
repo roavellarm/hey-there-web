@@ -6,6 +6,7 @@ import Column from 'components/Column'
 import Textfield from 'components/Textfield'
 import Button from 'components/Button'
 import Row from 'components/Row'
+import Typography from 'components/Typography'
 import { loginService } from 'services/authService'
 
 function Login() {
@@ -34,43 +35,57 @@ function Login() {
   }
 
   return (
-    <Column size={5}>
-      <Column size={12}>
-        <h1>LOGIN</h1>
-      </Column>
+    <Column size={4}>
+      <Row>
+        <Column size={12} justifyContent="center" margin="2rem 2%">
+          <Typography size="xl" weight="light">
+            Welcome back
+          </Typography>
+        </Column>
+      </Row>
 
       <Row>
         <Column size={12}>
           <Textfield
+            style={{ marginBottom: '1rem' }}
             label="Email"
+            placeholder="Email"
             name="email"
             value={email}
             onChange={e => setEmail(e.target.value)}
           />
-          <br />
+
           <Textfield
+            style={{ marginBottom: '1rem' }}
             type="password"
             label="Password"
+            placeholder="Password"
             name="password"
             value={password}
             onChange={e => setPassword(e.target.value)}
           />
-          <br />
+
           <Button
-            color="secondary"
+            color="submitColor"
             type="submit"
             fullWidth
             style={{ margin: '1rem 0px' }}
             onClick={handleLogin}
           >
-            Enter
+            Login
           </Button>
-          <br />
+
+          <Column size={12} justifyContent="center">
+            <Typography size="sm" weight="bold">
+              OR
+            </Typography>
+          </Column>
+
           <GoogleLogin
             clientId={REACT_APP_GOOGLE_CLIENT_ID}
             render={renderProps => (
               <Button
-                color="primary"
+                color="googleColor"
                 type="submit"
                 leftIcon="AiFillGoogleCircle"
                 fullWidth
@@ -85,9 +100,9 @@ function Login() {
             onFailure={responseGoogle}
             cookiePolicy="single_host_origin"
           />
-          <ToastAnimated />
         </Column>
       </Row>
+      <ToastAnimated />
     </Column>
   )
 }
