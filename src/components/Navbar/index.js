@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom'
 import PropType from 'prop-types'
 import { useStore } from 'core/store'
 import Select from 'components/Select'
+import { clearItems } from 'helpers'
 import DropdownMenu from 'components/DropdownMenu'
 import { Wrapper, Content, StyledBrand, StyledLink } from './styles'
 
@@ -38,7 +39,7 @@ function Navbar(props) {
   }
 
   const logOut = () => {
-    localStorage.clear()
+    clearItems()
     setStore(null)
     push('/')
     window.location.reload()

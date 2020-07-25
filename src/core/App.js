@@ -4,18 +4,19 @@ import Navbar from 'components/Navbar'
 import Row from 'components/Row'
 import Column from 'components/Column'
 import Router from 'core/Router'
+import { clearItems, getItem, keys } from 'helpers'
 import api from 'api'
 
 function App() {
   const { store, setStore } = useStore()
 
   async function verifyToken() {
-    const token = localStorage.getItem('token')
+    const token = getItem(keys.token)
     if (token) {
       const { data } = await api.post('/verifyToken', { token })
       if (!data?.isValidToken) {
         setStore(null)
-        localStorage.clear()
+        clearItems()
         window.location.reload()
       }
     }
