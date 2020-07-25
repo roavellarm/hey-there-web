@@ -19,9 +19,9 @@ function Button(props) {
         loadingText
       ) : (
         <div>
-          {leftIcon && <LeftIcon id="leftIcon" size={20} />}
+          {leftIcon && <LeftIcon id="leftIcon" size={30} />}
           {children}
-          {rightIcon && <RightIcon id="rightIcon" size={20} />}
+          {rightIcon && <RightIcon id="rightIcon" size={30} />}
         </div>
       )}
     </StyledButton>
