@@ -42,6 +42,8 @@ const colors = {
   topButton: '#330000',
   buttonHover: '#820000',
   inputLegend: 'hsl(0,0%,50%)',
+  googleColor: '#d73d32',
+  submitColor: '#05a081',
 }
 
 const opacities = {
