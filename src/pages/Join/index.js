@@ -8,7 +8,7 @@ import Column from 'components/Column'
 import Toast, { showToast } from 'components/Toast'
 import { registerService } from 'services/authService'
 
-function Register() {
+function Join() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -16,7 +16,7 @@ function Register() {
   const { push } = useHistory()
   const { REACT_APP_GOOGLE_CLIENT_ID } = process.env
 
-  const handleRegister = async e => {
+  const handleJoin = async e => {
     e.preventDefault()
     const data = { name, email, password }
     const { error } = await registerService(data)
@@ -71,7 +71,7 @@ function Register() {
             type="submit"
             fullWidth
             style={{ margin: '1rem 0px' }}
-            onClick={handleRegister}
+            onClick={handleJoin}
           >
             Sign Up
           </Button>
@@ -102,4 +102,4 @@ function Register() {
   )
 }
 
-export default Register
+export default Join

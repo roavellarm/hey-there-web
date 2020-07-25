@@ -6,7 +6,7 @@ import Login from 'pages/Login'
 import NewContact from 'pages/NewContact'
 import Profile from 'pages/Profile'
 import Home from 'pages/Home'
-import Register from 'pages/Register'
+import Join from 'pages/Join'
 import NotFound from 'pages/NotFound'
 
 function Router(props) {
@@ -30,7 +30,7 @@ function Router(props) {
     <Switch>
       <Route path="/" exact component={() => <Home {...props} />} />
       <Route path="/login" component={() => <Login {...props} />} />
-      <Route path="/register" component={() => <Register {...props} />} />
+      <Route path="/register" component={() => <Join {...props} />} />
       <Route path="/*" component={() => <NotFound {...props} />} />
     </Switch>
   )

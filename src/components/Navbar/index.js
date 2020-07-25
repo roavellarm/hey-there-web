@@ -27,7 +27,7 @@ function Navbar(props) {
     setLinks(
       links.concat([
         { name: 'LOGIN', path: '/login' },
-        { name: 'REGISTER', path: '/register' },
+        { name: 'JOIN', path: '/register' },
       ])
     )
     return links
