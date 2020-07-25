@@ -4,30 +4,29 @@ import { useHistory } from 'react-router-dom'
 import Button from 'components/Button'
 import Textfield from 'components/Textfield'
 import Column from 'components/Column'
-import api from '../../api/index'
+import Toast, { showToast } from 'components/Toast'
+import { registerService } from 'services/authService'
 
 function Register() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const history = useHistory()
+  const { push } = useHistory()
 
   async function handleRegister(e) {
     e.preventDefault()
 
     const data = { name, email, password }
 
-    try {
-      await api.post('/register', data)
-
-      // eslint-disable-next-line no-alert
-      alert('Cadastro efetuado com sucesso!')
-      history.push('/chat')
-    } catch (error) {
-      // eslint-disable-next-line no-alert
-      alert('Erro no cadastro!!')
+    const { error } = await registerService(data)
+    if (error) {
+      error.map(msg => showToast({ type: 'error', message: msg }))
+      return null
     }
+
+    push('/chat')
+    return window.location.reload()
   }
 
   return (
@@ -69,6 +68,7 @@ function Register() {
           >
             Cadastrar
           </Button>
+          <Toast />
         </Column>
       </Row>
     </Column>
