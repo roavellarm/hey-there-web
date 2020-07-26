@@ -6,6 +6,7 @@ import { loginService } from 'services/authService'
 
 function Login() {
   const [fields, setFields] = useState({})
+  const [loading, setLoading] = useState(false)
   const { push } = useHistory()
 
   const handleFields = e => {
@@ -19,11 +20,15 @@ function Login() {
   }
 
   async function handleLogin(e) {
+    setLoading(true)
     e.preventDefault()
 
     const { error } = await loginService(fields)
+    setLoading(false)
     if (error) {
-      error.map(msg => showToast({ type: 'error', message: msg }))
+      typeof error === 'string'
+        ? showToast({ type: error, message: error })
+        : error.map(msg => showToast({ type: 'error', message: msg }))
       return null
     }
 
@@ -52,6 +57,7 @@ function Login() {
         onKeyDown={onKeyDown}
         fields={fields}
         handleFields={handleFields}
+        loading={loading}
       />
       <Toast />
     </>
