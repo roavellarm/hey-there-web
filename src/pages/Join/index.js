@@ -5,10 +5,8 @@ import Toast, { showToast } from 'components/Toast'
 import { registerService } from 'services/authService'
 
 function Join() {
-  // const [name, setName] = useState('')
-  // const [email, setEmail] = useState('')
-  // const [password, setPassword] = useState('')
   const [fields, setFields] = useState({})
+  const [loading, setLoading] = useState(false)
 
   const handleFields = e => {
     const { name, value } = e.target
@@ -18,12 +16,18 @@ function Join() {
   const { push } = useHistory()
 
   const handleJoin = async e => {
+    setLoading(true)
     e.preventDefault()
     const { error } = await registerService(fields)
+    setLoading(false)
+
     if (error) {
-      error.map(msg => showToast({ type: 'error', message: msg }))
+      typeof error === 'string'
+        ? showToast({ type: error, message: error })
+        : error.map(msg => showToast({ type: 'error', message: msg }))
       return null
     }
+
     push('/chat')
     return window.location.reload()
   }
@@ -55,6 +59,7 @@ function Join() {
         onKeyDown={onKeyDown}
         fields={fields}
         handleFields={handleFields}
+        loading={loading}
       />
       <Toast />
     </>
