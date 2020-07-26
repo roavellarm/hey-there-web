@@ -42,6 +42,8 @@ const colors = {
   topButton: '#330000',
   buttonHover: '#820000',
   inputLegend: 'hsl(0,0%,50%)',
+  googleColor: '#d73d32',
+  submitColor: '#05a081',
 }
 
 const opacities = {
@@ -83,6 +85,14 @@ const device = {
   desktopL: `(min-width: ${deciceSizes.desktop})`,
 }
 
+const pallete = {
+  color1: '#6d6073',
+  color2: '#574b5d',
+  color3: '#3c3341',
+  color4: '#241b28',
+  color5: '#221428',
+}
+
 export default {
   typography,
   navbar,
@@ -91,4 +101,5 @@ export default {
   shadows,
   border,
   device,
+  pallete,
 }

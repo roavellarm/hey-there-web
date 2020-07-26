@@ -19,9 +19,9 @@ function Button(props) {
         loadingText
       ) : (
         <div>
-          {leftIcon && <LeftIcon id="leftIcon" size={20} />}
+          {leftIcon && <LeftIcon id="leftIcon" size={30} />}
           {children}
-          {rightIcon && <RightIcon id="rightIcon" size={20} />}
+          {rightIcon && <RightIcon id="rightIcon" size={30} />}
         </div>
       )}
     </StyledButton>
@@ -34,15 +34,7 @@ Button.propTypes = {
   isDisabled: PropTypes.bool,
   loadingText: PropTypes.string,
   size: PropTypes.oneOf(['default', 'small']),
-  color: PropTypes.oneOf([
-    'primary',
-    'secondary',
-    'success',
-    'warning',
-    'danger',
-    'white',
-    'silver',
-  ]),
+  color: PropTypes.string,
   onClick: PropTypes.func,
   leftIcon: PropTypes.string,
   rightIcon: PropTypes.string,

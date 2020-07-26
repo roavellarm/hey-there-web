@@ -1,8 +1,6 @@
 import styled from 'styled-components'
 
 export const StyledTextfield = styled.input`
-  /* position: relative; */
-  /* display: ; */
   padding: 0.3em 5px;
   font-size: ${({ theme }) => theme.typography.size.sm};
   line-height: 1.5;

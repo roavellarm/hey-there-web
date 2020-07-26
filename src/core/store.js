@@ -1,9 +1,10 @@
 import React, { useState, createContext, useContext } from 'react'
+import { getItem, keys } from 'helpers'
 import PropTypes from 'prop-types'
 
 const initialState = {
   isLoading: false,
-  token: localStorage.getItem('token'),
+  token: getItem(keys.token),
   // currentUser: getCurrentUser(),
   isSubmitting: false,
 }

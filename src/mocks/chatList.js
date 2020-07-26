@@ -1,9 +1,9 @@
-import image1 from 'assets/01.jpeg'
-import image2 from 'assets/02.jpeg'
-import image3 from 'assets/03.jpeg'
-import image4 from 'assets/04.jpeg'
-import image5 from 'assets/05.jpeg'
-import image6 from 'assets/06.jpeg'
+import image1 from './images/01.jpeg'
+import image2 from './images/02.jpeg'
+import image3 from './images/03.jpeg'
+import image4 from './images/04.jpeg'
+import image5 from './images/05.jpeg'
+import image6 from './images/06.jpeg'
 
 export const chatList = [
   {

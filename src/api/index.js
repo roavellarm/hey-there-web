@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { clearItems, getItem, keys } from 'helpers'
 
 const isLocalhost = window.location.origin.includes('localhost')
 
@@ -10,7 +11,7 @@ const api = axios.create({
 
 api.interceptors.request.use(
   config => {
-    const token = localStorage.getItem('token')
+    const token = getItem(keys.token)
     if (token) return { ...config, headers: { 'x-access-token': token } }
     return config
   },
@@ -28,7 +29,7 @@ api.interceptors.response.use(
     const { status, data } = error.response
     if (status === 400) return Promise.reject(data)
     if (status === 401) {
-      localStorage.clear()
+      clearItems()
       window.location = '/'
       return window.location.reload()
     }
