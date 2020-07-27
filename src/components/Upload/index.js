@@ -8,12 +8,12 @@ function Upload(props) {
 
   const renderDragMessage = (isDragActive, isDragReject) => {
     if (!isDragActive) {
-      return <UploadMessage>Arraste arquivos aqui ...</UploadMessage>
+      return <UploadMessage>Drag files here ...</UploadMessage>
     }
     if (isDragReject) {
-      return <UploadMessage type="error">Arquivo não suportado</UploadMessage>
+      return <UploadMessage type="error">Unsupported file</UploadMessage>
     }
-    return <UploadMessage type="success">Solte os arquivos aqui</UploadMessage>
+    return <UploadMessage type="success">Drop files here</UploadMessage>
   }
 
   return (
