@@ -22,7 +22,7 @@ api.interceptors.response.use(
   config => config,
   error => {
     if (error.response === undefined) {
-      const networkError = JSON.parse(JSON.stringify(error)).message
+      const networkError = { error: JSON.parse(JSON.stringify(error)).message }
       return Promise.reject(networkError)
     }
 

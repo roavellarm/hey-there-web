@@ -27,7 +27,7 @@ function Login() {
     setLoading(false)
     if (error) {
       typeof error === 'string'
-        ? showToast({ type: error, message: error })
+        ? showToast({ type: 'error', message: error })
         : error.map(msg => showToast({ type: 'error', message: msg }))
       return null
     }
