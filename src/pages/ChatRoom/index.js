@@ -7,38 +7,33 @@ function ChatRoom() {
   return (
     <>
       <Row>
-        <Column size={12} justifyContent="center" background="black">
+        <Column size={12} background="black">
           <Column size={12}>
             <h1>Chat Room</h1>
           </Column>
 
           <Row>
             <Column
-              size={10}
+              size={9}
               background="white"
-              // justifyContent="left"
-              // alignItems="left"
-              padding="5px"
-              radius="5px"
+              padding="4px 4px 4px 10px"
+              radius="0px 20px 4px 20px"
             >
-              <Typography alignText="left" color="black">
-                Oi! Tudo bem?
-              </Typography>
+              <Typography color="black">Oi! Tudo bem?</Typography>
             </Column>
+            <Column size={3} />
           </Row>
 
           <Row>
+            <Column size={3} />
             <Column
-              size={10}
-              background="white"
-              // justifyContent="right"
-              // alignItems="left"
-              padding="5px"
-              radius="5px"
+              size={9}
+              background="lightBlue"
+              alignItems="right"
+              padding="4px 4px 4px 10px"
+              radius="16px 4px 20px 0px"
             >
-              <Typography alignText="left" color="black">
-                Tudo! E ctg?
-              </Typography>
+              <Typography color="black">Tudo! E ctg?</Typography>
             </Column>
           </Row>
         </Column>
