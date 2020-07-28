@@ -2,8 +2,9 @@ import styled from 'styled-components'
 
 const StyledRow = styled.div`
   display: ${({ inline }) => (inline ? 'flex' : null)};
-  align-items: ${({ inline }) => (inline ? 'center' : null)};
-  flex-direction: ${({ inline }) => (inline ? 'inline' : null)};
+  align-items: ${({ alignItems }) => alignItems || null};
+  justify-content: ${({ justifyContent }) => justifyContent || null};
+  flex-direction: ${({ direction }) => direction || null};
   flex-wrap: ${({ wrap }) => (wrap ? 'wrap' : null)};
   position: relative;
   width: 100%;

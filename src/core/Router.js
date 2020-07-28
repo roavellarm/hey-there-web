@@ -7,6 +7,7 @@ import NewContact from 'pages/NewContact'
 import Profile from 'pages/Profile'
 import Home from 'pages/Home'
 import Join from 'pages/Join'
+import ChatRoom from 'pages/ChatRoom'
 import NotFound from 'pages/NotFound'
 
 function Router(props) {
@@ -16,6 +17,7 @@ function Router(props) {
     return (
       <Switch>
         <Route path="/" exact component={() => <Home {...props} />} />
+        <Route path="/chat/:id" component={() => <ChatRoom {...props} />} />
         <Route path="/chat" component={() => <ChatList {...props} />} />
         <Route
           path="/new-contact"
