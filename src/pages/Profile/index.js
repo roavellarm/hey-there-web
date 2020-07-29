@@ -7,14 +7,16 @@ import FileList from 'components/FileList'
 import Row from 'components/Row'
 import Column from 'components/Column'
 import Avatar from 'components/Avatar'
-import { profile } from 'mocks/profile'
 import Typography from 'components/Typography'
+import { getCurrentUser } from 'helpers'
 import { Container, Content } from './styles'
 
 function Profile() {
   const [uploadedFiles, setUploadedFiles] = useState([])
+  const [currentUser, setCurrentUser] = useState({})
 
   const updateStates = async () => {
+    setCurrentUser(getCurrentUser())
     const response = await api.get('/images')
     setUploadedFiles(
       response.data.map(file => ({
@@ -100,7 +102,7 @@ function Profile() {
         background="#5A4E61"
       >
         <Column margin="90px" size={12} justifyContent="center">
-          <Avatar size="120px" src={profile.avatarImg} border="green" />
+          <Avatar size="120px" src={currentUser.avatar} border="green" />
         </Column>
         <Container>
           <Content>
@@ -116,10 +118,12 @@ function Profile() {
           justifyContent="center"
           background="#302934"
         >
-          <Typography>{`Nome: ${profile.name}`}</Typography>
-          <Typography>{`Email: ${profile.email}`}</Typography>
+          <Typography>{`Nome: ${currentUser.name}`}</Typography>
+          <Typography>{`Email: ${currentUser.email}`}</Typography>
 
-          <Typography>{`Status: ${profile.statusMessage}`}</Typography>
+          {currentUser.statusMessage && (
+            <Typography>{`Status: ${currentUser.statusMessage}`}</Typography>
+          )}
         </Column>
       </Column>
     </Row>

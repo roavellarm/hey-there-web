@@ -17,9 +17,9 @@ function Join() {
     setFields({ ...fields, [name]: value })
   }
 
-  const handleJoin = async (params = fields) => {
+  const handleJoin = async () => {
     setLoading(true)
-    const { data, error } = await registerService(params)
+    const { data, error } = await registerService(fields)
     setLoading(false)
 
     if (error) {
@@ -41,8 +41,8 @@ function Join() {
     const { googleId, email, imageUrl: avatar, name } = response.profileObj
 
     const password = `@HeyThere${googleId}`
-
-    handleJoin({ password, email, avatar, name })
+    setFields({ password, email, avatar, name })
+    handleJoin()
   }
 
   const onKeyDown = event => {

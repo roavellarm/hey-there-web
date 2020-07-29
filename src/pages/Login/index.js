@@ -2,14 +2,12 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import Toast, { showToast } from 'components/Toast'
 import Form from 'components/Form'
-import { useStore } from 'core/store'
-import { setItem, keys } from 'helpers'
+import { setCurrentUser, setItem, keys } from 'helpers'
 import { loginService } from 'services/authService'
 
 function Login() {
   const [fields, setFields] = useState({})
   const [loading, setLoading] = useState(false)
-  const { setStore } = useStore()
   const { push } = useHistory()
 
   const handleFields = e => {
@@ -17,10 +15,10 @@ function Login() {
     setFields({ ...fields, [name]: value })
   }
 
-  const handleLogin = async (params = fields) => {
+  const handleLogin = async (params = undefined) => {
     setLoading(true)
 
-    const { data, error } = await loginService(params)
+    const { data, error } = await loginService(params || fields)
 
     setLoading(false)
     if (error) {
@@ -30,8 +28,8 @@ function Login() {
       return null
     }
 
-    setStore({ token: data.token })
     setItem(keys.token, data.token)
+    setCurrentUser(data.currentUser)
     setFields({ ...fields, password: '' })
     push('/chat')
     window.location.reload()
@@ -43,7 +41,7 @@ function Login() {
 
     const password = `@HeyThere${googleId}`
 
-    handleLogin({ password, email, avatar, name })
+    return handleLogin({ password, email, avatar, name })
   }
 
   const onKeyDown = event => {

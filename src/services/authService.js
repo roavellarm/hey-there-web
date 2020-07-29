@@ -5,7 +5,7 @@ export const loginService = async info => {
     const { data } = await loginApi(info)
     return { data }
   } catch (error) {
-    return error
+    return { error }
   }
 }
 
@@ -19,6 +19,6 @@ export const registerService = async info => {
 
     return { data }
   } catch (error) {
-    return error
+    return { error }
   }
 }

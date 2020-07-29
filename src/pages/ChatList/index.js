@@ -1,4 +1,5 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import Row from 'components/Row'
 import Column from 'components/Column'
 import Typography from 'components/Typography'
@@ -7,9 +8,11 @@ import { chatList } from 'mocks/chatList'
 import { StyledNumber } from './styles'
 
 function ChatList() {
-  const handleClick = () => {
+  const { push } = useHistory()
+
+  const handleClick = chatId => {
     // eslint-disable-next-line no-alert
-    alert('You clicked me!!!')
+    push(`/chat/${chatId}`)
   }
 
   return (
@@ -22,7 +25,7 @@ function ChatList() {
             radius="8px"
             alignItems="center"
             margin="2px"
-            onClick={handleClick}
+            onClick={() => handleClick(user.chatId)}
           >
             <Column size={12} margin="8px 2%">
               <Column size={1}>
