@@ -15,3 +15,11 @@ export const clearItems = () => {
   localStorage.clear()
   return window.location.reload()
 }
+
+export const getCurrentUser = () => {
+  return JSON.parse(localStorage.getItem('currentUser'))
+}
+
+export const setCurrentUser = data => {
+  return localStorage.setItem('currentUser', JSON.stringify(data))
+}
