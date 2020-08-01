@@ -7,7 +7,7 @@ import { Container, FileInfo, Preview } from './styles'
 function FileList({ files, onDelete }) {
   return (
     <Container>
-      {files.map(uploadedFile => {
+      {files.map((uploadedFile) => {
         return (
           <li key={uploadedFile.id}>
             <FileInfo>

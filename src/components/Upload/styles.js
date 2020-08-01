@@ -15,8 +15,8 @@ export const DropContainer = styled.div.attrs({ className: 'dropzone' })`
 
   transition: height 0.2s ease;
 
-  ${props => props.isDragActive && dragActive};
-  ${props => props.isDragReject && dragReject};
+  ${(props) => props.isDragActive && dragActive};
+  ${(props) => props.isDragReject && dragReject};
 `
 
 const messageColors = {
@@ -26,7 +26,7 @@ const messageColors = {
 }
 export const UploadMessage = styled.p`
   display: flex;
-  color: ${props => messageColors[props.type || 'default']};
+  color: ${(props) => messageColors[props.type || 'default']};
   justify-content: center;
   align-items: center;
   padding: 15px 0;

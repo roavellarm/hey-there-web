@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 const StyledTypography = styled.div`
   font-family: ${({ theme }) => theme.typography.type.primary};
-  font-size: ${props => {
+  font-size: ${(props) => {
     if (props.size === 'xxs') return props.theme.typography.size.xxs
     if (props.size === 'xs') return props.theme.typography.size.xs
     if (props.size === 'sm') return props.theme.typography.size.sm
@@ -12,7 +12,7 @@ const StyledTypography = styled.div`
     if (props.size === 'xxl') return props.theme.typography.size.xxl
     return props.theme.typography.md
   }};
-  font-weight: ${props => {
+  font-weight: ${(props) => {
     if (props.weight === 'regular') return props.theme.typography.weight.regular
     if (props.weight === 'thin') return props.theme.typography.weight.thin
     if (props.weight === 'light') return props.theme.typography.weight.light
@@ -24,7 +24,7 @@ const StyledTypography = styled.div`
 
   letter-spacing: 0.4px;
 
-  color: ${props => {
+  color: ${(props) => {
     if (props.color === 'initial') return props.theme.colors.initial
     if (props.color === 'inherit') return props.theme.colors.inherit
     if (props.color === 'primary') return props.theme.colors.primary

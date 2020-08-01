@@ -10,14 +10,14 @@ import { StyledNumber } from './styles'
 function ChatList() {
   const { push } = useHistory()
 
-  const handleClick = chatId => {
+  const handleClick = (chatId) => {
     // eslint-disable-next-line no-alert
     push(`/chat/${chatId}`)
   }
 
   return (
     <Row>
-      {chatList.map(user => {
+      {chatList.map((user) => {
         return (
           <Row
             key={user.name}

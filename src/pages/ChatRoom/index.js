@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import Row from 'components/Row'
 import Column from 'components/Column'
 import Typography from 'components/Typography'
+import Toast, { showToast } from 'components/Toast'
 import { getMessagesService } from 'services/messageService'
 import { getCurrentUser } from 'helpers'
 
@@ -13,13 +14,14 @@ function ChatRoom() {
 
   const getMessages = async () => {
     const { data, error } = await getMessagesService(id)
-    if (error) return alert('Ferrou!')
+    if (error) return showToast('error', error)
     setMessages(data.messages)
     return data
   }
 
   useEffect(() => {
     getMessages()
+    // eslint-disable-next-line
   }, [])
 
   return (
@@ -29,7 +31,7 @@ function ChatRoom() {
           <Column size={12}>
             <h1>Chat Room</h1>
           </Column>
-          {messages.map(item => {
+          {messages.map((item) => {
             return (
               <>
                 {item.message.author !== currentUserEmail ? (
@@ -66,6 +68,7 @@ function ChatRoom() {
             )
           })}
         </Column>
+        <Toast />
       </Row>
     </>
   )

@@ -13,7 +13,7 @@ export const Context = createContext({})
 
 const Provider = ({ children }) => {
   const [store, updateStore] = useState(initialState)
-  const setStore = props => updateStore({ ...store, ...props })
+  const setStore = (props) => updateStore({ ...store, ...props })
   return (
     <Context.Provider value={{ store, setStore }}>{children}</Context.Provider>
   )

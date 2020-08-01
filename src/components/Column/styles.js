@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const getWidthByQuantity = size => {
+const getWidthByQuantity = (size) => {
   if (!size) return '4.33%'
   const sizes = {
     1: '4.33%',
@@ -52,7 +52,7 @@ const StyledColumn = styled.div`
   min-height: 0.125rem;
 
   @media only screen and (min-width: 45em) {
-    width: ${props => getWidthByQuantity(props.size)};
+    width: ${(props) => getWidthByQuantity(props.size)};
   }
 `
 

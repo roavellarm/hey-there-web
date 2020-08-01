@@ -12,7 +12,7 @@ function Join() {
   const { setStore } = useStore()
   const { push } = useHistory()
 
-  const handleFields = e => {
+  const handleFields = (e) => {
     const { name, value } = e.target
     setFields({ ...fields, [name]: value })
   }
@@ -24,8 +24,8 @@ function Join() {
 
     if (error) {
       typeof error === 'string'
-        ? showToast({ type: 'error', message: error })
-        : error.map(msg => showToast({ type: 'error', message: msg }))
+        ? showToast('error', error)
+        : error.map((msg) => showToast('error', msg))
       return null
     }
 
@@ -37,7 +37,7 @@ function Join() {
     return null
   }
 
-  const responseGoogle = async response => {
+  const responseGoogle = async (response) => {
     const { googleId, email, imageUrl: avatar, name } = response.profileObj
 
     const password = `@HeyThere${googleId}`
@@ -45,7 +45,7 @@ function Join() {
     handleJoin()
   }
 
-  const onKeyDown = event => {
+  const onKeyDown = (event) => {
     const { keyCode } = event
     if (keyCode === 13) return handleJoin(event)
     return null

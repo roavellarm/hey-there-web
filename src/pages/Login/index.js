@@ -6,25 +6,25 @@ import { setCurrentUser, setItem, keys } from 'helpers'
 import { loginService } from 'services/authService'
 
 function Login() {
-  const [fields, setFields] = useState({})
+  const [fields, setFields] = useState()
   const [loading, setLoading] = useState(false)
   const { push } = useHistory()
 
-  const handleFields = e => {
+  const handleFields = (e) => {
     const { name, value } = e.target
     setFields({ ...fields, [name]: value })
   }
 
-  const handleLogin = async (params = undefined) => {
+  const handleLogin = async (params) => {
     setLoading(true)
 
-    const { data, error } = await loginService(params || fields)
+    const { data, error } = await loginService(params)
 
     setLoading(false)
     if (error) {
       typeof error === 'string'
-        ? showToast({ type: 'error', message: error })
-        : error.map(msg => showToast({ type: 'error', message: msg }))
+        ? showToast('error', error)
+        : error.map((msg) => showToast('error', msg))
       return null
     }
 
@@ -36,15 +36,13 @@ function Login() {
     return null
   }
 
-  const responseGoogle = response => {
+  const responseGoogle = (response) => {
     const { googleId, email, imageUrl: avatar, name } = response.profileObj
-
     const password = `@HeyThere${googleId}`
-
-    return handleLogin({ password, email, avatar, name })
+    handleLogin({ password, email, avatar, name })
   }
 
-  const onKeyDown = event => {
+  const onKeyDown = (event) => {
     const { keyCode } = event
     if (keyCode === 13) return handleLogin(event)
     return null

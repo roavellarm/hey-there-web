@@ -7,14 +7,14 @@ function StyledRadio(props) {
   const { onChange, options, name, value, isVertical } = props
   const [selectedValue, setSelectedValue] = useState(value)
 
-  const onChangeRadio = val => {
+  const onChangeRadio = (val) => {
     setSelectedValue(val.key)
     onChange({ target: { name, value: val.key } })
   }
 
   return (
     <StyledRadioGroup isVertical={isVertical}>
-      {options.map(x => (
+      {options.map((x) => (
         <Checkbox
           key={x.key}
           name={x.key}

@@ -2,7 +2,7 @@ import React from 'react'
 import { toast } from 'react-toastify'
 import { StyledToast } from './styles'
 
-export const showToast = ({ type, message }) => {
+export const showToast = (type, message) => {
   switch (type) {
     case 'success':
       toast.success(message)

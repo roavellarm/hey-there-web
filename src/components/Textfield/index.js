@@ -10,7 +10,7 @@ function Textfield(props) {
     <>
       {label && <Label isRequired={isRequired}>{label}</Label>}
       <InputMask {...props}>
-        {inputProps => (
+        {(inputProps) => (
           <StyledTextfield
             {...props}
             value={value}

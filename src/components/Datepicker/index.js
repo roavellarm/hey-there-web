@@ -22,7 +22,7 @@ function Datepicker(props) {
       <StyledDatepicker
         placeholderText={placeholder}
         selected={value && new Date(value)}
-        onSelect={event => {
+        onSelect={(event) => {
           const formattedDate = new Date(event).toISOString()
           return onChange({
             target: { name, value: formattedDate },

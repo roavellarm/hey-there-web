@@ -10,17 +10,17 @@ const api = axios.create({
 })
 
 api.interceptors.request.use(
-  config => {
+  (config) => {
     const token = getItem(keys.token)
     if (token) return { ...config, headers: { 'x-access-token': token } }
     return config
   },
-  error => Promise.reject(error)
+  (error) => Promise.reject(error)
 )
 
 api.interceptors.response.use(
-  config => config,
-  error => {
+  (config) => config,
+  (error) => {
     if (error.response === undefined) {
       const networkError = { error: JSON.parse(JSON.stringify(error)).message }
       return Promise.reject(networkError)

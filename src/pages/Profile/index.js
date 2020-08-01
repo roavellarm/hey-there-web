@@ -19,7 +19,7 @@ function Profile() {
     setCurrentUser(getCurrentUser())
     const response = await api.get('/images')
     setUploadedFiles(
-      response.data.map(file => ({
+      response.data.map((file) => ({
         id: file._id,
         name: file.name,
         readableSize: filesize(file.size),
@@ -30,45 +30,43 @@ function Profile() {
     )
   }
 
-  const updateFile = (id, data) => {
-    setUploadedFiles(
-      uploadedFiles.map(file => {
-        return id === file.id ? { ...file, ...data } : file
-      })
-    )
+  const updateFile = (currentFile, data, currentFiles) => {
+    const files = currentFiles?.map((file) => {
+      return String(currentFile.name) === String(file.name)
+        ? { ...file, ...data }
+        : file
+    })
+
+    setUploadedFiles(files)
   }
 
-  const processUpload = uploadedFile => {
-    const data = new FormData()
+  const processUpload = async (uploadedFile, currentFiles) => {
+    try {
+      const data = new FormData()
 
-    data.append('file', uploadedFile.file, uploadedFile.name)
+      data.append('file', uploadedFile.file, uploadedFile.name)
 
-    api
-      .post('/upload-image', data, {
-        onUploadProgress: e => {
+      const response = await api.post('/upload-image', data, {
+        onUploadProgress: (e) => {
           const progress = parseInt(Math.round((e.loaded * 100) / e.total))
-
-          updateFile(uploadedFile.id, {
-            progress,
-          })
+          updateFile(uploadedFile, { progress }, currentFiles)
         },
       })
-      .then(response => {
-        updateFile(uploadedFile.id, {
-          uploaded: true,
-          id: response.data._id,
-          url: response.data.url,
-        })
+
+      updateFile(uploadedFile.id, {
+        uploaded: true,
+        id: response.data._id,
+        url: response.data.url,
       })
-      .catch(() => {
-        updateFile(uploadedFile.id, {
-          error: true,
-        })
+    } catch (error) {
+      updateFile(uploadedFile.id, {
+        error: true,
       })
+    }
   }
 
-  const handleUpload = files => {
-    const currentFiles = files.map(file => ({
+  const handleUpload = (files) => {
+    const currentFiles = files.map((file) => ({
       file,
       id: uniqueId(),
       name: file.name,
@@ -80,17 +78,24 @@ function Profile() {
       url: null,
     }))
 
-    setUploadedFiles(uploadedFiles.concat(currentFiles))
-    currentFiles.forEach(processUpload)
+    const asd = uploadedFiles.concat(currentFiles)
+
+    setUploadedFiles(asd)
+
+    asd.forEach((e) => processUpload(e, asd))
   }
 
-  const handleDelete = async id => {
+  const handleDelete = async (id) => {
     await api.delete(`/images/${id}`)
-    setUploadedFiles(uploadedFiles.filter(file => file.id !== id))
+    setUploadedFiles(uploadedFiles.filter((file) => file.id !== id))
   }
 
   useEffect(() => {
     updateStates()
+
+    return () => {
+      uploadedFiles.forEach((file) => URL.revokeObjectURL(file.preview))
+    }
   }, [])
 
   return (
@@ -100,6 +105,7 @@ function Profile() {
         size={12}
         justifyContent="center"
         background="#5A4E61"
+        radius="5px"
       >
         <Column margin="90px" size={12} justifyContent="center">
           <Avatar size="120px" src={currentUser.avatar} border="green" />
@@ -107,7 +113,7 @@ function Profile() {
         <Container>
           <Content>
             <Upload onUpload={handleUpload} />
-            {!!uploadedFiles.length && (
+            {!!uploadedFiles?.length && (
               <FileList files={uploadedFiles} onDelete={handleDelete} />
             )}
           </Content>
@@ -117,6 +123,7 @@ function Profile() {
           size={12}
           justifyContent="center"
           background="#302934"
+          radius="5px"
         >
           <Typography>{`Nome: ${currentUser.name}`}</Typography>
           <Typography>{`Email: ${currentUser.email}`}</Typography>

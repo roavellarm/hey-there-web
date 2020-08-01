@@ -10,7 +10,7 @@ const StyledTextarea = styled.textarea`
   background-image: none;
   background-clip: padding-box;
   border: ${({ theme }) => `2px ${theme.colors.silver} solid`};
-  border-radius: ${props => props.theme.border.radius};
+  border-radius: ${(props) => props.theme.border.radius};
   -webkit-transition: border-color 0.15s ease-in-out,
     -webkit-box-shadow 0.15s ease-in-out;
   transition: border-color 0.15s ease-in-out,

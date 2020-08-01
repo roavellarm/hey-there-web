@@ -30,8 +30,8 @@ function Carousel(props) {
       width="100%"
     >
       {list
-        .filter(user => !!user.headerImage)
-        .map(user => {
+        .filter((user) => !!user.headerImage)
+        .map((user) => {
           return (
             <div key={user._id}>
               <img

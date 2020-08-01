@@ -8,7 +8,7 @@ import {
 } from './styles'
 import Label from '../Label'
 
-const Checkbox = props => {
+const Checkbox = (props) => {
   const {
     isRequired,
     name,

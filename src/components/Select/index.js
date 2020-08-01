@@ -22,9 +22,9 @@ function Select(props) {
       <StyledSelect
         {...props}
         name={name}
-        value={options.find(x => x[optionValue] === value)}
+        value={options.find((x) => x[optionValue] === value)}
         styles={customStyles}
-        onChange={event => {
+        onChange={(event) => {
           onChange({
             target: {
               name,

@@ -48,16 +48,16 @@ function getPadding({ hasIcon }) {
 
 const StyledButton = styled.button`
   color: ${getFontColor};
-  box-shadow: ${props => props.theme.shadows.box.soft};
-  font-size: ${props => props.theme.typography.size.sm};
+  box-shadow: ${(props) => props.theme.shadows.box.soft};
+  font-size: ${(props) => props.theme.typography.size.sm};
   background: ${getBackground};
   border: ${getBorder};
   opacity: ${getOpacity};
   cursor: ${getCursor};
   width: ${getWidth};
   padding: ${getPadding};
-  border-radius: ${props => props.theme.border.radius};
-  font-weight: ${props => props.theme.typography.weight.bold};
+  border-radius: ${(props) => props.theme.border.radius};
+  font-weight: ${(props) => props.theme.typography.weight.bold};
   letter-spacing: 1px;
 
   position: relative;
@@ -93,9 +93,10 @@ const StyledButton = styled.button`
   }
 
   :active {
-    transform: ${props =>
+    transform: ${(props) =>
       !props.isDisabled && !props.isLoading && `translate(1px, -1px)`};
-    box-shadow: ${props => rgba(props.theme.colors.primary, 0.2)} 0 1px 3px 2px;
+    box-shadow: ${(props) => rgba(props.theme.colors.primary, 0.2)} 0 1px 3px
+      2px;
   }
 
   &:hover {

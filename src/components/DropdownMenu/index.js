@@ -11,7 +11,7 @@ function DropdownMenu(props) {
   const { onSelectOption, title, options } = props
   const [isOpen, setIsOpen] = useState(false)
 
-  const onChangeField = key => {
+  const onChangeField = (key) => {
     setIsOpen(false)
     onSelectOption(key)
   }

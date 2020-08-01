@@ -29,8 +29,8 @@ const StyledCheckbox = styled.div`
   display: inline-block;
   width: 18px;
   height: 18px;
-  background: ${props => props.theme.colors.secondary};
-  border-radius: ${props =>
+  background: ${(props) => props.theme.colors.secondary};
+  border-radius: ${(props) =>
     props.isRadio ? '100px' : props.theme.border.radius};
   transition: all 150ms;
 
@@ -39,7 +39,7 @@ const StyledCheckbox = styled.div`
   }
 
   ${StyledIcon} {
-    visibility: ${props => (props.checked ? 'visible' : 'hidden')};
+    visibility: ${(props) => (props.checked ? 'visible' : 'hidden')};
   }
 `
 export {

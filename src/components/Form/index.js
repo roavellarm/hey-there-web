@@ -36,7 +36,7 @@ function Form(props) {
       <Row>
         <Column size={12}>
           <Loader color="yellow" loading={loading} />
-          {renderComponents.map(item => {
+          {renderComponents.map((item) => {
             if (item.type === 'input') {
               const name = item.name.toLocaleLowerCase()
               return (
@@ -47,7 +47,7 @@ function Form(props) {
                   placeholder={item.name}
                   type={name === 'name' ? 'text' : name}
                   name={name}
-                  value={fields[name]}
+                  value={fields?.[name]}
                   onChange={handleFields}
                   onKeyDown={onKeyDown}
                 />
@@ -61,7 +61,7 @@ function Form(props) {
                   type="submit"
                   fullWidth
                   style={{ margin: '1rem 0px' }}
-                  onClick={item.onClick}
+                  onClick={() => item.onClick(fields)}
                 >
                   {item.name}
                 </Button>

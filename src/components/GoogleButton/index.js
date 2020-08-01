@@ -7,7 +7,7 @@ function GoogleButton({ responseGoogle, text }) {
   return (
     <GoogleLogin
       clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-      render={renderProps => (
+      render={(renderProps) => (
         <Button
           color="googleColor"
           type="submit"

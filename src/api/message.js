@@ -1,3 +1,3 @@
 import api from './index'
 
-export const getMessagesApi = chatId => api.get(`chat/${chatId}`)
+export const getMessagesApi = (chatId) => api.get(`chat/${chatId}`)

@@ -27,7 +27,7 @@ export const StyledSelect = styled(ReactSelect)`
 `
 
 export const customStyles = {
-  option: provided => ({
+  option: (provided) => ({
     ...provided,
     borderBottom: 'none',
   }),

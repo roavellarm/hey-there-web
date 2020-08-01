@@ -1,7 +1,13 @@
 import { loginApi, registerApi } from 'api/auth'
 
-export const loginService = async info => {
+export const loginService = async (info) => {
   try {
+    const { password } = info
+    // TODO
+    if (!password) {
+      const error = "Password can't be empty"
+      return { error }
+    }
     const { data } = await loginApi(info)
     return { data }
   } catch (error) {
@@ -9,7 +15,7 @@ export const loginService = async info => {
   }
 }
 
-export const registerService = async info => {
+export const registerService = async (info) => {
   try {
     const { error } = await registerApi(info)
     if (error) return Promise.reject(error)
