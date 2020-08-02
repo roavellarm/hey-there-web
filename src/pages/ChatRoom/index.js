@@ -5,25 +5,49 @@ import { rgb } from 'polished'
 import Row from 'components/Row'
 import Column from 'components/Column'
 import Typography from 'components/Typography'
+import Avatar from 'components/Avatar'
 import Toast, { showToast } from 'components/Toast'
-import { getMessagesService } from 'services/messageService'
+import {
+  getChatInfoService,
+  getMessagesService,
+  sendMessageService,
+} from 'services/messageService'
 import { getCurrentUser } from 'helpers'
 import TextArea from 'components/TextArea'
-import { SenderWrapper, StyledInput, StyledIcon } from './styles'
+import { StyledHeader, SenderWrapper, StyledInput, StyledIcon } from './styles'
 
 function ChatRoom() {
   const { id } = useParams()
   const [messages, setMessages] = useState([])
+  const [message, setMessage] = useState('')
+  const [otherUser, setOtherUser] = useState({ name: '' })
   const { email: currentUserEmail } = getCurrentUser(getCurrentUser)
+
+  const getChatInfo = async () => {
+    const { data, error } = await getChatInfoService(id)
+    if (error) return showToast('error', error)
+    setOtherUser(data.otherUser)
+    return data
+  }
 
   const getMessages = async () => {
     const { data, error } = await getMessagesService(id)
     if (error) return showToast('error', error)
-    setMessages(data.messages)
-    return data
+    return setMessages(data.messages)
+  }
+
+  const sendMessage = async () => {
+    const { data, error } = await sendMessageService(id, {
+      author: currentUserEmail,
+      content: message,
+    })
+    if (error) return showToast('error', error)
+    setMessage('')
+    return setMessages(data.messages)
   }
 
   useEffect(() => {
+    getChatInfo()
     getMessages()
     // eslint-disable-next-line
   }, [])
@@ -31,22 +55,24 @@ function ChatRoom() {
   return (
     <>
       <Row>
-        <Column size={12} background="black">
-          <Column size={12}>
-            <h1>Chat Room</h1>
-          </Column>
-          {messages.map((item) => {
+        <Column size={12} background="#574B5D" radius="5px">
+          <StyledHeader>
+            <Avatar size="50px" src={otherUser.avatar} border="green" />
+            <Typography>{otherUser.name}</Typography>
+          </StyledHeader>
+
+          {messages.map((item, index) => {
             return (
-              <>
+              <div key={index}>
                 {item.message.author !== currentUserEmail ? (
                   <Row>
                     <Column
                       size={9}
                       background="white"
-                      padding="4px 4px 4px 10px"
+                      padding="4px 4px 4px 20px"
                       radius="0px 20px 4px 20px"
                     >
-                      <Typography color="black">
+                      <Typography size="md" weight="light" color="black">
                         {item.message.content}
                       </Typography>
                     </Column>
@@ -62,13 +88,13 @@ function ChatRoom() {
                       padding="4px 4px 4px 10px"
                       radius="16px 4px 20px 0px"
                     >
-                      <Typography color="black">
+                      <Typography size="md" weight="light" color="black">
                         {item.message.content}
                       </Typography>
                     </Column>
                   </Row>
                 )}
-              </>
+              </div>
             )
           })}
           <SenderWrapper>
@@ -76,10 +102,14 @@ function ChatRoom() {
               <TextArea
                 padding="8px 15px"
                 radius="20px"
+                value={message}
                 placeholder="Type a message"
+                onChange={(e) => setMessage(e.target.value)}
+                onKeyDown={sendMessage}
+                name="message"
               />
             </StyledInput>
-            <StyledIcon>
+            <StyledIcon onClick={sendMessage}>
               <FiSend color={rgb(145, 145, 145)} size="24" />
             </StyledIcon>
           </SenderWrapper>
