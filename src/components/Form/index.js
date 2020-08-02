@@ -49,7 +49,9 @@ function Form(props) {
                   name={name}
                   value={fields?.[name]}
                   onChange={handleFields}
-                  onKeyDown={onKeyDown}
+                  onKeyDown={(e) => {
+                    return e.keyCode === 13 ? onKeyDown(fields) : undefined
+                  }}
                 />
               )
             }
