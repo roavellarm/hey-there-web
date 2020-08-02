@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 export const StyledImage = styled.div`
-  position: absolute;
   display: flex;
   height: ${({ size }) => size || '60px'};
   width: ${({ size }) => size || '60px'};
