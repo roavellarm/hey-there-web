@@ -96,6 +96,7 @@ function Profile() {
     return () => {
       uploadedFiles.forEach((file) => URL.revokeObjectURL(file.preview))
     }
+    // eslint-disable-next-line
   }, [])
 
   return (
@@ -107,7 +108,7 @@ function Profile() {
         background="#5A4E61"
         radius="5px"
       >
-        <Column margin="90px" size={12} justifyContent="center">
+        <Column margin="30px" size={12} justifyContent="center">
           <Avatar size="120px" src={currentUser.avatar} border="green" />
         </Column>
         <Container>
