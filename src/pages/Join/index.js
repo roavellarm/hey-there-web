@@ -17,9 +17,9 @@ function Join() {
     setFields({ ...fields, [name]: value })
   }
 
-  const handleJoin = async () => {
+  const handleJoin = async (params) => {
     setLoading(true)
-    const { data, error } = await registerService(fields)
+    const { data, error } = await registerService(params)
     setLoading(false)
 
     if (error) {
@@ -37,18 +37,10 @@ function Join() {
     return null
   }
 
-  const responseGoogle = async (response) => {
+  const responseGoogle = (response) => {
     const { googleId, email, imageUrl: avatar, name } = response.profileObj
-
     const password = `@HeyThere${googleId}`
-    setFields({ password, email, avatar, name })
-    handleJoin()
-  }
-
-  const onKeyDown = (event) => {
-    const { keyCode } = event
-    if (keyCode === 13) return handleJoin(event)
-    return null
+    handleJoin({ password, email, avatar, name })
   }
 
   const renderComponents = [
@@ -64,7 +56,7 @@ function Join() {
       <Form
         title="Join Hey There"
         renderComponents={renderComponents}
-        onKeyDown={onKeyDown}
+        onKeyDown={handleJoin}
         fields={fields}
         handleFields={handleFields}
         loading={loading}
