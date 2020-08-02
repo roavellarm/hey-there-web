@@ -7,7 +7,7 @@ export default createGlobalStyle`
     padding: 0;
     outline: 0;
     box-sizing: border-box;
-    transition:  opacity 0.5s ease-out;
+    transition: opacity 0.5s ease-out;
   }
 
   html {
