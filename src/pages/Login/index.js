@@ -17,10 +17,9 @@ function Login() {
 
   const handleLogin = async (params) => {
     setLoading(true)
-
     const { data, error } = await loginService(params)
-
     setLoading(false)
+
     if (error) {
       typeof error === 'string'
         ? showToast('error', error)
@@ -42,12 +41,6 @@ function Login() {
     handleLogin({ password, email, avatar, name })
   }
 
-  const onKeyDown = (event) => {
-    const { keyCode } = event
-    if (keyCode === 13) return handleLogin(event)
-    return null
-  }
-
   const renderComponents = [
     { type: 'input', name: 'Email' },
     { type: 'input', name: 'Password' },
@@ -60,7 +53,7 @@ function Login() {
       <Form
         title="Welcome back"
         renderComponents={renderComponents}
-        onKeyDown={onKeyDown}
+        onKeyDown={handleLogin}
         fields={fields}
         handleFields={handleFields}
         loading={loading}
