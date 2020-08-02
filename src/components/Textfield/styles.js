@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const StyledTextfield = styled.input`
-  padding: 0.3em 5px;
+  padding: ${({ padding }) => padding || '0.3em 5px'};
   font-size: ${({ theme }) => theme.typography.size.sm};
   line-height: 1.5;
   color: ${({ theme }) => theme.colors.black};
@@ -9,7 +9,8 @@ export const StyledTextfield = styled.input`
   border: ${({ theme }) => `2px ${theme.colors.silver} solid`};
   background-image: none;
   background-clip: padding-box;
-  border-radius: ${(props) => props.theme.border.radius};
+  border-radius: ${({ radius, ...props }) =>
+    radius || props.theme.border.radius};
   -webkit-transition: border-color 0.15s ease-in-out,
     -webkit-box-shadow 0.15s ease-in-out;
   transition: border-color 0.15s ease-in-out,

@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react'
+import { FiSend } from 'react-icons/fi'
 import { useParams } from 'react-router-dom'
+import { rgb } from 'polished'
 import Row from 'components/Row'
 import Column from 'components/Column'
 import Typography from 'components/Typography'
 import Toast, { showToast } from 'components/Toast'
 import { getMessagesService } from 'services/messageService'
 import { getCurrentUser } from 'helpers'
+import TextArea from 'components/TextArea'
+import { SenderWrapper, StyledInput, StyledIcon } from './styles'
 
 function ChatRoom() {
   const { id } = useParams()
@@ -67,6 +71,18 @@ function ChatRoom() {
               </>
             )
           })}
+          <SenderWrapper>
+            <StyledInput>
+              <TextArea
+                padding="8px 15px"
+                radius="20px"
+                placeholder="Type a message"
+              />
+            </StyledInput>
+            <StyledIcon>
+              <FiSend color={rgb(145, 145, 145)} size="24" />
+            </StyledIcon>
+          </SenderWrapper>
         </Column>
         <Toast />
       </Row>
