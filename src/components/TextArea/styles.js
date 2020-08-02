@@ -3,6 +3,7 @@ import styled from 'styled-components'
 const StyledTextarea = styled.textarea`
   display: block;
   padding: ${({ padding }) => padding || '0.3em 5px'};
+  font-family: ${({ theme }) => theme.typography.type.primary};
   font-size: ${({ theme }) => theme.typography.size.sm};
   line-height: 1.5;
   color: ${({ theme }) => theme.colors.black};
@@ -36,7 +37,7 @@ const StyledTextarea = styled.textarea`
   }
 
   &:focus {
-    border: 0.5px solid ${({ theme }) => theme.colors.secondary};
+    border: 0.5px solid ${({ theme }) => theme.colors.green || 'green'};
     outline: 0;
   }
 `

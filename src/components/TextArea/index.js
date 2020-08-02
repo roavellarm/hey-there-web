@@ -3,8 +3,17 @@ import PropTypes from 'prop-types'
 import StyledTextarea from './styles'
 import Label from '../Label'
 
-function TextArea({ onChange, radius, value, label, type, ...props }) {
-  const { isRequired, name } = props
+function TextArea(props) {
+  const {
+    isRequired,
+    name,
+    onChange,
+    onKeyDown,
+    radius,
+    value,
+    label,
+    type,
+  } = props
   return (
     <div>
       {label && <Label isRequired={isRequired}>{label}</Label>}
@@ -16,6 +25,7 @@ function TextArea({ onChange, radius, value, label, type, ...props }) {
           type={type}
           radius={radius}
           onChange={onChange}
+          onKeyDown={(e) => (e.keyCode === 13 ? onKeyDown() : undefined)}
         />
       </div>
     </div>
@@ -24,6 +34,7 @@ function TextArea({ onChange, radius, value, label, type, ...props }) {
 
 TextArea.propTypes = {
   onChange: PropTypes.func.isRequired,
+  onKeyDown: PropTypes.func,
   value: PropTypes.string,
   isRequired: PropTypes.bool,
   label: PropTypes.string,
@@ -33,6 +44,7 @@ TextArea.propTypes = {
 }
 
 TextArea.defaultProps = {
+  onKeyDown: undefined,
   value: undefined,
   radius: undefined,
   isRequired: false,
