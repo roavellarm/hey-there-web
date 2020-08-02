@@ -6,7 +6,7 @@ import { setCurrentUser, setItem, keys } from 'helpers'
 import { loginService } from 'services/authService'
 
 function Login() {
-  const [fields, setFields] = useState()
+  const [fields, setFields] = useState({})
   const [loading, setLoading] = useState(false)
   const { push } = useHistory()
 
