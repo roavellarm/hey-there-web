@@ -37,7 +37,7 @@ function Join() {
     const { keyCode } = event
     if (keyCode === 13) return handleJoin(event)
     return null
-  }
+  } 
 
   const renderComponents = [
     { type: 'input', name: 'Name' },
