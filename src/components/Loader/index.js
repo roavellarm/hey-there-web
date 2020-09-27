@@ -8,32 +8,30 @@ const override = css`
   margin: 0 auto;
 `
 
-function Loader({ theme }) {
+function Loader({ color, loading }) {
   return (
     <div className="sweet-loading">
       <FadeLoader
         css={override}
-        height={15}
+        height={10}
         width={15}
-        radius={100}
+        radius={5}
         margin={10}
-        color={theme.colors.primary || 'blue'}
-        loading
+        color={color || 'blue'}
+        loading={loading}
       />
     </div>
   )
 }
 
 Loader.propTypes = {
-  theme: PropType.shape({
-    colors: PropType.shape({
-      primary: PropType.string,
-    }),
-  }),
+  loading: PropType.bool,
+  color: PropType.string,
 }
 
 Loader.defaultProps = {
-  theme: undefined,
+  color: undefined,
+  loading: true,
 }
 
 export default Loader
