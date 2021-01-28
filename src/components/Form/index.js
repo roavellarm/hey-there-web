@@ -5,9 +5,19 @@ import Column from 'components/Column'
 import Typography from 'components/Typography'
 import Textfield from 'components/Textfield'
 import Button from 'components/Button'
+import Loader from 'components/Loader'
 import GoogleButton from 'components/GoogleButton'
 
-function Form({ title, renderComponents, fields, handleFields, onKeyDown }) {
+function Form(props) {
+  const {
+    title,
+    renderComponents,
+    fields,
+    handleFields,
+    onKeyDown,
+    loading,
+  } = props
+
   return (
     <Column
       size={7}
@@ -25,6 +35,7 @@ function Form({ title, renderComponents, fields, handleFields, onKeyDown }) {
 
       <Row>
         <Column size={12}>
+          <Loader color="yellow" loading={loading} />
           {renderComponents.map(item => {
             if (item.type === 'input') {
               const name = item.name.toLocaleLowerCase()
@@ -83,6 +94,7 @@ Form.propTypes = {
   fields: PropType.shape({}).isRequired,
   handleFields: PropType.func.isRequired,
   onKeyDown: PropType.func.isRequired,
+  loading: PropType.bool.isRequired,
 }
 
 export default Form
