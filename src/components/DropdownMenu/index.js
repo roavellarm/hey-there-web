@@ -23,19 +23,17 @@ function DropdownMenu(props) {
     >
       <StyledDropDownLink>{title}</StyledDropDownLink>
       <StyledDropdownContent isOpen={isOpen}>
-        {options.map((option, index) => {
-          return (
-            <StyledOptions
-              key={index}
-              value={option}
-              onClick={() => {
-                onChangeField({ target: { name: title, value: option.action } })
-              }}
-            >
-              {option.name}
-            </StyledOptions>
-          )
-        })}
+        {options.map((option, index) => (
+          <StyledOptions
+            key={index}
+            value={option}
+            onClick={() => {
+              onChangeField({ target: { name: title, value: option.action } })
+            }}
+          >
+            {option.name}
+          </StyledOptions>
+        ))}
       </StyledDropdownContent>
     </DropdownWrapper>
   )

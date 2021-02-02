@@ -14,49 +14,47 @@ function ChatList() {
 
   return (
     <Row>
-      {chatList.map(user => {
-        return (
-          <Row
-            key={user.name}
-            backgroundColor="primary"
-            radius="8px"
-            alignItems="center"
-            margin="2px"
-            onClick={handleClick}
-          >
-            <Column size={12} margin="8px 2%">
-              <Column size={1}>
-                <Avatar src={user.avatar} />
-              </Column>
-
-              <Column size={9} alignItems="left" direction="column">
-                <Typography size="md" weight="bold">
-                  {user.name}
-                </Typography>
-                <Typography color="secondary">{user.msgPreview}</Typography>
-              </Column>
-
-              <Column size={2} direction="column">
-                <Typography
-                  size="sm"
-                  weight={user.newMessages !== '0' ? 'bold' : 'regular'}
-                  color={user.newMessages !== '0' ? '#32a852' : 'grey'}
-                >
-                  {user.time}
-                </Typography>
-
-                {user.newMessages !== '0' ? (
-                  <StyledNumber>
-                    <Typography size="sm" weight="black">
-                      {user.newMessages}
-                    </Typography>
-                  </StyledNumber>
-                ) : null}
-              </Column>
+      {chatList.map(user => (
+        <Row
+          key={user.name}
+          backgroundColor="primary"
+          radius="8px"
+          alignItems="center"
+          margin="2px"
+          onClick={handleClick}
+        >
+          <Column size={12} margin="8px 2%">
+            <Column size={1}>
+              <Avatar src={user.avatar} />
             </Column>
-          </Row>
-        )
-      })}
+
+            <Column size={9} alignItems="left" direction="column">
+              <Typography size="md" weight="bold">
+                {user.name}
+              </Typography>
+              <Typography color="secondary">{user.msgPreview}</Typography>
+            </Column>
+
+            <Column size={2} direction="column">
+              <Typography
+                size="sm"
+                weight={user.newMessages !== '0' ? 'bold' : 'regular'}
+                color={user.newMessages !== '0' ? '#32a852' : 'grey'}
+              >
+                {user.time}
+              </Typography>
+
+              {user.newMessages !== '0' ? (
+                <StyledNumber>
+                  <Typography size="sm" weight="black">
+                    {user.newMessages}
+                  </Typography>
+                </StyledNumber>
+              ) : null}
+            </Column>
+          </Column>
+        </Row>
+      ))}
     </Row>
   )
 }

@@ -3,13 +3,9 @@ export const keys = {
   data: 'data',
 }
 
-export const setItem = (key, data) => {
-  return localStorage.setItem(key, data)
-}
+export const setItem = (key, data) => localStorage.setItem(key, data)
 
-export const getItem = key => {
-  return localStorage.getItem(key)
-}
+export const getItem = key => localStorage.getItem(key)
 
 export const clearItems = () => {
   localStorage.clear()

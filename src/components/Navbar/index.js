@@ -56,13 +56,11 @@ function Navbar(props) {
         {brand && <StyledBrand onClick={() => push('/')}>{brand}</StyledBrand>}
 
         {links &&
-          links.map((link, index) => {
-            return (
-              <StyledLink key={index} onClick={() => push(link.path)}>
-                {link.name}
-              </StyledLink>
-            )
-          })}
+          links.map((link, index) => (
+            <StyledLink key={index} onClick={() => push(link.path)}>
+              {link.name}
+            </StyledLink>
+          ))}
         {store.token && <StyledLink onClick={logOut}>LOGOUT</StyledLink>}
         {dropdown && (
           <DropdownMenu

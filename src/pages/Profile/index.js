@@ -30,9 +30,7 @@ function Profile() {
 
   const updateFile = (id, data) => {
     setUploadedFiles(
-      uploadedFiles.map(file => {
-        return id === file.id ? { ...file, ...data } : file
-      })
+      uploadedFiles.map(file => (id === file.id ? { ...file, ...data } : file))
     )
   }
 

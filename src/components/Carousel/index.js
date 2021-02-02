@@ -31,20 +31,18 @@ function Carousel(props) {
     >
       {list
         .filter(user => !!user.headerImage)
-        .map(user => {
-          return (
-            <div key={user._id}>
-              <img
-                alt={user.name}
-                src={user.headerImage}
-                height="300"
-                width="auto"
-                style={{ objectFit: 'cover', objectPosition: 'center' }}
-              />
-              <StyledLegend>{user.name}</StyledLegend>
-            </div>
-          )
-        })}
+        .map(user => (
+          <div key={user._id}>
+            <img
+              alt={user.name}
+              src={user.headerImage}
+              height="300"
+              width="auto"
+              style={{ objectFit: 'cover', objectPosition: 'center' }}
+            />
+            <StyledLegend>{user.name}</StyledLegend>
+          </div>
+        ))}
     </ReactCarousel>
   )
 }

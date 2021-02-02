@@ -17,6 +17,4 @@ export const showToast = ({ type, message }) => {
       toast.info(message)
   }
 }
-export default () => {
-  return <StyledToast />
-}
+export default () => <StyledToast />

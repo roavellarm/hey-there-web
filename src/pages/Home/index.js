@@ -9,21 +9,19 @@ function Home() {
     <>
       <h1>Home</h1>
       <Row backgroundColor="white" radius="5px">
-        {colors.map((color, index) => {
-          return (
-            <Column
-              key={index}
-              size={2}
-              style={{
-                height: '100px',
-                width: '100px',
-                background: `${color}`,
-              }}
-            >
-              Teste
-            </Column>
-          )
-        })}
+        {colors.map((color, index) => (
+          <Column
+            key={index}
+            size={2}
+            style={{
+              height: '100px',
+              width: '100px',
+              background: `${color}`,
+            }}
+          >
+            Teste
+          </Column>
+        ))}
       </Row>
     </>
   )
