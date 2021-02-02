@@ -1,8 +1,10 @@
 import styled from 'styled-components'
 
 export const StyledHeader = styled.div`
-  position: relative;
+  position: fixed;
   display: flex;
+  z-index: 1;
+  width: 350px;
   border-radius: 5px 5px 0px 0px;
   align-items: center;
   justify-content: space-evenly;

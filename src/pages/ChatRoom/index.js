@@ -47,8 +47,11 @@ function ChatRoom() {
   }
 
   useEffect(() => {
-    getChatInfo()
-    getMessages()
+    const interval = setInterval(() => {
+      getChatInfo()
+      getMessages()
+    }, 2000)
+    return () => clearInterval(interval)
     // eslint-disable-next-line
   }, [])
 
@@ -61,42 +64,50 @@ function ChatRoom() {
             <Typography>{otherUser.name}</Typography>
           </StyledHeader>
 
-          {messages.map((item, index) => {
-            return (
-              <div key={index}>
-                {item.message.author !== currentUserEmail ? (
-                  <Row>
-                    <Column
-                      size={9}
-                      background="white"
-                      padding="4px 4px 4px 20px"
-                      radius="0px 20px 4px 20px"
-                    >
-                      <Typography size="md" weight="light" color="black">
-                        {item.message.content}
-                      </Typography>
-                    </Column>
-                    <Column size={3} />
-                  </Row>
-                ) : (
-                  <Row>
-                    <Column size={3} />
-                    <Column
-                      size={9}
-                      background="lightBlue"
-                      alignItems="right"
-                      padding="4px 4px 4px 10px"
-                      radius="16px 4px 20px 0px"
-                    >
-                      <Typography size="md" weight="light" color="black">
-                        {item.message.content}
-                      </Typography>
-                    </Column>
-                  </Row>
-                )}
-              </div>
-            )
-          })}
+          <Row
+            style={{
+              height: '800px',
+              maxHeight: '800px',
+              overflowY: 'auto',
+            }}
+          >
+            {messages.map((item, index) => {
+              return (
+                <div key={index}>
+                  {item.message.author !== currentUserEmail ? (
+                    <>
+                      <Column
+                        size={9}
+                        background="white"
+                        padding="4px 4px 4px 20px"
+                        radius="0px 20px 4px 20px"
+                      >
+                        <Typography size="md" weight="light" color="black">
+                          {item.message.content}
+                        </Typography>
+                      </Column>
+                      <Column size={3} />
+                    </>
+                  ) : (
+                    <>
+                      <Column size={3} />
+                      <Column
+                        size={9}
+                        background="lightBlue"
+                        alignItems="right"
+                        padding="4px 4px 4px 10px"
+                        radius="16px 4px 20px 0px"
+                      >
+                        <Typography size="md" weight="light" color="black">
+                          {item.message.content}
+                        </Typography>
+                      </Column>
+                    </>
+                  )}
+                </div>
+              )
+            })}
+          </Row>
           <SenderWrapper>
             <StyledInput>
               <TextArea
