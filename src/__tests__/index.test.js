@@ -1,17 +1,21 @@
-import index from '../pages/Home/index'
-import Login from '../pages/Login'
-// import { registerService } from '../services/authService'
+import sum from '../sum'
+import divisao from '../divisao'
+import api from '../api/index'
 
-// const freteGratis = require('./descontos').freteGratis()
+test('adds 1 + 2 to equal 3', () => {
+  expect(sum(1, 2)).toBe(3);
+});
 
-// test('freteGratis é verdadeiro para 200', () => {
-//   expect(freteGratis(200)).toBeTruthy()
-// })
-
-test('Expect the index exists', () => {
-  expect(index).toExist
+test('Sum should be exists', () => {
+  expect(sum).toExist
 })
 
-test('Expect the login exists', () => {
-  expect(Login).toExist
+test('divisao should be exists', () => {
+  expect(divisao).toExist
 })
+
+
+test('api should be exists', () => {
+  expect(api).toExist
+})
+
