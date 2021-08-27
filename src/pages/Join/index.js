@@ -1,74 +1,71 @@
 import React, { useState } from 'react'
-import Form from 'components/Form'
-import { useHistory } from 'react-router-dom'
-import { useStore } from 'core/store'
-import { setItem, keys } from 'helpers'
-import Toast, { showToast } from 'components/Toast'
-import { registerService } from 'services/authService'
+// import Form from 'components/Form'
+// import { useHistory } from 'react-router-dom'
+// import { useStore } from 'core/store'
+// import { setItem, keys } from 'helpers'
+// import { registerService } from 'services/authService'
+import Toast from 'components/Toast'
+import Textfield from 'components/Textfield'
+import Button from 'components/Button'
+import api from 'api'
 
 function Join() {
-  const [fields, setFields] = useState({})
-  const [loading, setLoading] = useState(false)
-  const { setStore } = useStore()
-  const { push } = useHistory()
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
-  const handleFields = e => {
-    const { name, value } = e.target
-    setFields({ ...fields, [name]: value })
-  }
+  async function handleFields(e) {
+    e.preventDefault()
 
-  const handleJoin = async (params = fields) => {
-    setLoading(true)
-    const { data, error } = await registerService(params)
-    setLoading(false)
+    try {
+      const data = { name, email, password }
 
-    if (error) {
-      typeof error === 'string'
-        ? showToast({ type: 'error', message: error })
-        : error.map(msg => showToast({ type: 'error', message: msg }))
-      return null
+      const dados = await api.post('/register', data)
+
+      return console.log('Deu certo', dados)
+    } catch (error) {
+      return console.log('Deu ERRADO')
     }
-
-    setStore({ token: data.token })
-    setItem(keys.token, data.token)
-    setFields({ ...fields, password: '' })
-    push('/chat')
-    window.location.reload()
-    return null
   }
-
-  const responseGoogle = async response => {
-    const { googleId, email, imageUrl: avatar, name } = response.profileObj
-
-    const password = `@HeyThere${googleId}`
-
-    handleJoin({ password, email, avatar, name })
-  }
-
-  const onKeyDown = event => {
-    const { keyCode } = event
-    if (keyCode === 13) return handleJoin(event)
-    return null
-  } 
-
-  const renderComponents = [
-    { type: 'input', name: 'Name' },
-    { type: 'input', name: 'Email' },
-    { type: 'input', name: 'Password' },
-    { type: 'button', name: 'Sign Up', onClick: handleJoin },
-    { type: 'googleButton', name: 'Join with Google', responseGoogle },
-  ]
 
   return (
     <>
-      <Form
-        title="Join Hey There"
-        renderComponents={renderComponents}
-        onKeyDown={onKeyDown}
-        fields={fields}
-        handleFields={handleFields}
-        loading={loading}
-      />
+      <form onSubmit={handleFields}>
+        <Textfield
+          style={{ marginBottom: '1rem' }}
+          label="name"
+          placeholder="Name"
+          type="text"
+          name="name"
+          onChange={e => setName(e.target.value)}
+        />
+        <Textfield
+          style={{ marginBottom: '1rem' }}
+          label="email"
+          placeholder="Email"
+          type="email"
+          name="name"
+          onChange={e => setEmail(e.target.value)}
+        />
+
+        <Textfield
+          style={{ marginBottom: '1rem' }}
+          label="assword"
+          placeholder="Password"
+          type="password"
+          name="senha"
+          onChange={e => setPassword(e.target.value)}
+        />
+
+        <Button
+          color="submitColor"
+          type="submit"
+          fullWidth
+          style={{ margin: '1rem 0px' }}
+        >
+          Sign up
+        </Button>
+      </form>
       <Toast />
     </>
   )

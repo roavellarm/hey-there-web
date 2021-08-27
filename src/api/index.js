@@ -1,12 +1,11 @@
 import axios from 'axios'
 import { clearItems, getItem, keys } from 'helpers'
 
-const isLocalhost = window.location.origin.includes('localhost')
+// const isLocalhost = window.location.origin.includes('localhost')
 
 const api = axios.create({
-  baseURL: isLocalhost
-    ? 'http://localhost:3001'
-    : 'https://heythere-staging-api.herokuapp.com',
+  baseURL: 'https://heythere-staging-api.herokuapp.com',
+  // ? 'http://localhost:3001'
 })
 
 api.interceptors.request.use(
