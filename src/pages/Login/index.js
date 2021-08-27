@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState } from 'react'
 // import Form from 'components/Form'
 // import { useHistory } from 'react-router-dom'
@@ -8,6 +9,10 @@ import Toast from 'components/Toast'
 import Textfield from 'components/Textfield'
 import Button from 'components/Button'
 import api from 'api'
+import Column from 'components/Column'
+import Row from 'components/Row'
+// import Loader from 'components/Loader'
+import Typography from 'components/Typography'
 
 function Join() {
   const [email, setEmail] = useState('')
@@ -29,34 +34,55 @@ function Join() {
 
   return (
     <>
-      <form onSubmit={handleFields}>
-        <Textfield
-          style={{ marginBottom: '1rem' }}
-          label="email"
-          placeholder="Email"
-          type="email"
-          name="name"
-          onChange={e => setEmail(e.target.value)}
-        />
+      <Column
+        size={7}
+        style={{ background: 'rgba(255, 255, 255, 0.1)' }}
+        radius="10px"
+        padding="0px 1rem 1rem 1rem"
+      >
+        <Row>
+          <Column size={12} justifyContent="center" margin="2rem 2%">
+            <Typography size="xl" weight="light">
+              {/* {title} */}
+              Login
+            </Typography>
+          </Column>
+        </Row>
 
-        <Textfield
-          style={{ marginBottom: '1rem' }}
-          label="assword"
-          placeholder="Password"
-          type="password"
-          name="senha"
-          onChange={e => setPassword(e.target.value)}
-        />
+        <Row>
+          <Column size={12}>
+            {/* <Loader color="yellow" loading={loading} /> */}
+            <form onSubmit={handleFields}>
+              <Textfield
+                style={{ marginBottom: '1rem' }}
+                label="email"
+                placeholder="Email"
+                type="email"
+                name="name"
+                onChange={e => setEmail(e.target.value)}
+              />
 
-        <Button
-          color="submitColor"
-          type="submit"
-          fullWidth
-          style={{ margin: '1rem 0px' }}
-        >
-          Sign up
-        </Button>
-      </form>
+              <Textfield
+                style={{ marginBottom: '1rem' }}
+                label="assword"
+                placeholder="Password"
+                type="password"
+                name="senha"
+                onChange={e => setPassword(e.target.value)}
+              />
+
+              <Button
+                color="submitColor"
+                type="submit"
+                fullWidth
+                style={{ margin: '1rem 0px' }}
+              >
+                Sign up
+              </Button>
+            </form>
+          </Column>
+        </Row>
+      </Column>
       <Toast />
     </>
   )
