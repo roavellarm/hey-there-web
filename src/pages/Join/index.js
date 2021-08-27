@@ -13,6 +13,7 @@ import api from 'api'
 import Column from 'components/Column'
 import Row from 'components/Row'
 import Typography from 'components/Typography'
+import Loader from 'components/Loader'
 // import { useHistory } from 'react-router-dom'
 
 function Join() {
@@ -27,6 +28,7 @@ function Join() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [loading, setLoading] = useState(false)
 
   async function handleFields(e) {
     e.preventDefault()
@@ -34,9 +36,10 @@ function Join() {
     try {
       const data = { name, email, password }
 
-      // setLoading(true)
+      setLoading(true)
 
       const dados = await api.post('/register', data)
+      setLoading(false)
 
       // const { data, error } = await registerService(params)
       // setLoading(false)
@@ -67,6 +70,8 @@ function Join() {
       >
         <Row>
           <Column size={12} justifyContent="center" margin="2rem 2%">
+            <Loader color="yellow" loading={loading} />
+
             <Typography size="xl" weight="light">
               {/* {title} */}
               Join

@@ -13,18 +13,20 @@ import Column from 'components/Column'
 import Row from 'components/Row'
 // import Loader from 'components/Loader'
 import Typography from 'components/Typography'
+import Loader from 'components/Loader'
 
 function Join() {
   const [email, setEmail] = useState('asd@gmail.com')
   const [password, setPassword] = useState('JoGu3340')
+  const [loading, setLoading] = useState(false)
 
   async function handleFields(e) {
     e.preventDefault()
-
     try {
       const dados = { email, password }
-
+      setLoading(true)
       const data = await api.post('/login', dados)
+      setLoading(false)
 
       console.log(data)
 
@@ -53,7 +55,7 @@ function Join() {
 
         <Row>
           <Column size={12}>
-            {/* <Loader color="yellow" loading={loading} /> */}
+            <Loader color="yellow" loading={loading} />
             <form onSubmit={handleFields}>
               <Textfield
                 style={{ marginBottom: '1rem' }}
