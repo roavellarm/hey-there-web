@@ -1,19 +1,29 @@
 /* eslint-disable no-console */
 import React, { useState } from 'react'
+
 // import Form from 'components/Form'
 // import { useHistory } from 'react-router-dom'
 // import { useStore } from 'core/store'
 // import { setItem, keys } from 'helpers'
 // import { registerService } from 'services/authService'
-import Toast from 'components/Toast'
+import Toast, { showToast } from 'components/Toast'
 import Textfield from 'components/Textfield'
 import Button from 'components/Button'
 import api from 'api'
 import Column from 'components/Column'
 import Row from 'components/Row'
 import Typography from 'components/Typography'
+// import { useHistory } from 'react-router-dom'
 
 function Join() {
+  // const [setLoading] = useState(false)
+  // const { push } = useHistory()
+
+  // const handleFields = e => {
+  //   const { name, value } = e.target
+  //   setFields({ ...fields, [name]: value })
+  // }
+
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -24,11 +34,24 @@ function Join() {
     try {
       const data = { name, email, password }
 
-      const dados = await api.post('/register', data)
+      // setLoading(true)
 
-      return console.log('Deu certo', dados)
+      await api.post('/register', data)
+
+      // const { data, error } = await registerService(params)
+      // setLoading(false)
+
+      // if (dados) {
+      //   return showToast('success', 'User registered with success!!')
+      // }
+      // return showToast({ type: 'error', message: 'An Error!' })
+
+      // push('/chat')
+      // window.location.reload()
+
+      return showToast({ type: 'success', message: 'Deu certo!' })
     } catch (error) {
-      return console.log('Deu ERRADO')
+      return showToast({ type: 'error', message: 'Deu ERRADO!' })
     }
   }
 

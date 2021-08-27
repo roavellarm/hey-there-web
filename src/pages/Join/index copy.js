@@ -1,34 +1,35 @@
 /* eslint-disable no-console */
 import React, { useState } from 'react'
+
 // import Form from 'components/Form'
 // import { useHistory } from 'react-router-dom'
 // import { useStore } from 'core/store'
 // import { setItem, keys } from 'helpers'
 // import { registerService } from 'services/authService'
-import Toast, { showToast } from 'components/Toast'
+import Toast from 'components/Toast'
 import Textfield from 'components/Textfield'
 import Button from 'components/Button'
 import api from 'api'
 import Column from 'components/Column'
 import Row from 'components/Row'
-// import Loader from 'components/Loader'
 import Typography from 'components/Typography'
 
 function Join() {
+  const [name, setName] = useState('')
   const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('JoGu3340')
+  const [password, setPassword] = useState('')
 
   async function handleFields(e) {
     e.preventDefault()
 
     try {
-      const data = { email, password }
+      const data = { name, email, password }
 
-      await api.post('/login', data)
+      const dados = await api.post('/register', data)
 
-      return showToast({ type: 'success', message: 'Deu certo!' })
+      return console.log('Deu certo', dados)
     } catch (error) {
-      return showToast({ type: 'error', message: 'Deu ERRADO!' })
+      return console.log('Deu ERRADO')
     }
   }
 
@@ -44,7 +45,7 @@ function Join() {
           <Column size={12} justifyContent="center" margin="2rem 2%">
             <Typography size="xl" weight="light">
               {/* {title} */}
-              Login
+              Join
             </Typography>
           </Column>
         </Row>
@@ -53,6 +54,14 @@ function Join() {
           <Column size={12}>
             {/* <Loader color="yellow" loading={loading} /> */}
             <form onSubmit={handleFields}>
+              <Textfield
+                style={{ marginBottom: '1rem' }}
+                label="name"
+                placeholder="Name"
+                type="text"
+                name="name"
+                onChange={e => setName(e.target.value)}
+              />
               <Textfield
                 style={{ marginBottom: '1rem' }}
                 label="email"
@@ -64,7 +73,7 @@ function Join() {
 
               <Textfield
                 style={{ marginBottom: '1rem' }}
-                label="assword"
+                label="password"
                 placeholder="Password"
                 type="password"
                 name="senha"
