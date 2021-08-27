@@ -36,7 +36,7 @@ function Join() {
 
       // setLoading(true)
 
-      await api.post('/register', data)
+      const dados = await api.post('/register', data)
 
       // const { data, error } = await registerService(params)
       // setLoading(false)
@@ -49,7 +49,9 @@ function Join() {
       // push('/chat')
       // window.location.reload()
 
-      return showToast({ type: 'success', message: 'Deu certo!' })
+      console.log(dados)
+
+      return showToast({ type: 'success', message: 'Deu certo!' }, data)
     } catch (error) {
       return showToast({ type: 'error', message: 'Deu ERRADO!' })
     }

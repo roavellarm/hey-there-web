@@ -15,18 +15,20 @@ import Row from 'components/Row'
 import Typography from 'components/Typography'
 
 function Join() {
-  const [email, setEmail] = useState('')
+  const [email, setEmail] = useState('asd@gmail.com')
   const [password, setPassword] = useState('JoGu3340')
 
   async function handleFields(e) {
     e.preventDefault()
 
     try {
-      const data = { email, password }
+      const dados = { email, password }
 
-      await api.post('/login', data)
+      const data = await api.post('/login', dados)
 
-      return showToast({ type: 'success', message: 'Deu certo!' })
+      console.log(data)
+
+      return showToast({ type: 'success', message: `Deu certo!` })
     } catch (error) {
       return showToast({ type: 'error', message: 'Deu ERRADO!' })
     }
