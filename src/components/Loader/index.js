@@ -17,7 +17,7 @@ function Loader({ theme }) {
         width={15}
         radius={100}
         margin={10}
-        color={theme.colors.primary || 'blue'}
+        color="yellow"
         loading
       />
     </div>

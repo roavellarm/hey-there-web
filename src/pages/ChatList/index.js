@@ -18,6 +18,7 @@ function ChatList() {
       {chatList.map(item => {
         return (
           <Row
+            key={item.id}
             backgroundColor="primary"
             radius="8px"
             alignItems="center"
